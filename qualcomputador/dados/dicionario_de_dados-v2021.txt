@@ -1,0 +1,49 @@
+Questionário "Seu Computador"
+Dicionário de Dados
+
+Retirados:
+Nome completo
+Grupos
+Endereço de email
+Data de resposta
+
+#-------------------------------------------------#
+1.genero
+2.Feminino
+3.Masculino
+4.Outro/Não declarado
+
+2.curso
+Resposta aberta/discursiva/texto
+
+3.faixa_etaria
+1.18 a 21 anos 
+2.22 a 24 anos 
+3.25 a 29 anos 
+4.30 a 34 anos 
+5.35 a 39 anos 
+6.40 a 49 anos 
+7.45 a 54 anos 
+8.50 a 59 anos 
+9.mais de 59 anos
+
+4.computador
+0-não
+1.sim
+
+5.os
+0.Não sei!
+1.Windows
+2.MacOS
+3.Linux
+4.Outro
+
+6.marca
+Resposta aberta/discursiva/texto
+
+7.linguagem
+Resposta aberta/discursiva/texto
+
+8.linguagem
+Resposta aberta/discursiva/texto
+#-------------------------------------------------#

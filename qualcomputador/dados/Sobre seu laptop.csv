@@ -1,0 +1,18 @@
+﻿"Nome completo",Grupos,"Endereço de email",Data,"(genero) Por favor, informe seu gênero:","(curso) Informe o nome do seu curso","(idade) Qual a sua faixa de idade:","(laptop) Você possui computador portátil (laptop/notebook) ou desktop (de mesa) ?","(OS) Caso tenha laptop/desktop, qual o sistema operacional utilizado no mesmo?","(Marca) Qual o fabricante do seu laptop/desktop?","(linguagem) Você conhece ou trabalha com alguma linguagem ou ambiente de desenvolvimento de análise de dados?","(quallingua) Se trabalha/conhece linguagem para data science, escreva qual:"
+"Guilherme Alves",,g.alves@unesp.br,"Monday, 25 Oct 2021, 21:44",Masculino,BSI,"Entre 22 e 24 anos",2.Sim,5.Outro,DELL,2.Sim,
+"Ana Carla Caserta",,anacarla_caserta@hotmail.com,"Monday, 8 Nov 2021, 20:24",Feminino,"Sistemas de Informação","Entre 22 e 24 anos",2.Sim,2.Windows,Dell,1.Não,
+"Kaue da Rocha Dario",,kauedario@gmail.com,"Monday, 25 Oct 2021, 20:54",Masculino,"Sistemas de Informação","Entre 22 e 24 anos",2.Sim,4.Linux,Lenovo,1.Não,
+"André Luiz da Silva Junior",,andre.jr@unesp.br,"Monday, 25 Oct 2021, 20:53",Masculino,BCC,"Entre 25 e 29 anos",2.Sim,2.Windows,Samsung,1.Não,
+"Thais Alessandra de Carvalho",,thaalessa@gmail.com,"Monday, 25 Oct 2021, 19:16",Feminino,"Bacharelado em Sistemas de Informação","Entre 25 e 29 anos",2.Sim,2.Windows,Lenovo,1.Não,
+"Jessica Duarte",,jessica.duarte252@gmail.com,"Tuesday, 26 Oct 2021, 22:59",Feminino,"Sistemas de Informação","Entre 25 e 29 anos",2.Sim,2.Windows,Lenovo,1.Não,
+"Geovanna Carolina Favilla Vidal Trigo Brandão",,geovanna.favilla@unesp.br,"Monday, 25 Oct 2021, 19:29",Feminino,"Ciência da computação","Entre 22 e 24 anos",1.Não,2.Windows,Dell,1.Não,
+"Gabriel Brandini Fonseca",,gabriel_brandini@hotmail.com,"Monday, 25 Oct 2021, 21:07",Masculino,"Bacharelado em Sistemas de Informação","Entre 25 e 29 anos",2.Sim,2.Windows,HP,1.Não,
+"Gabriel Gallo",,gabriel.gallo@unesp.br,"Tuesday, 9 Nov 2021, 19:59",Masculino,"Ciências da computação","Entre 25 e 29 anos",2.Sim,2.Windows,Dell,1.Não,
+"André Luiz Gaspar",,and_lrg@hotmail.com,"Monday, 25 Oct 2021, 21:08",Masculino,"Sistemas de Informação","Entre 22 e 24 anos",1.Não,4.Linux,Acer,2.Sim,
+"Gabriel Gerotti",,gabriel.gerotti@unesp.br,"Monday, 25 Oct 2021, 20:50",Masculino,"Sistemas de Informação","Entre 25 e 29 anos",1.Não,"1.Não sei!","Não possuo computador portátil",1.Não,
+"Leandro Gonzaga",,leandro.gonzaga@unesp.br,"Monday, 25 Oct 2021, 20:53",Masculino,"Bacharelado em Sistemas de Informação","Entre 35 e 39 anos",2.Sim,4.Linux,Acer,1.Não,
+"Christian Rodrigues Batista",,chris.rod_batista@outlook.com,"Tuesday, 26 Oct 2021, 11:42",Masculino,"Sistemas de Informação","Entre 18 e 21 anos",2.Sim,2.Windows,Samsung,1.Não,
+"Virgilio Santinho Tagliavini",,virgilio.s.tagliavini@unesp.br,"Tuesday, 26 Oct 2021, 10:04",Masculino,"Bcharelado em Ciências da Computação","Entre 18 e 21 anos",1.Não,2.Windows,Samsung,2.Sim,"Octave e Python"
+"Thiago Scala",,thiscala2010@hotmail.com,"Monday, 25 Oct 2021, 20:01",Masculino,BCC,"Entre 22 e 24 anos",2.Sim,2.Windows,Dell,1.Não,
+"Danilo Siqueira",,danilo.siqueira@unesp.br,"Monday, 25 Oct 2021, 20:49",Masculino,BCC,"Entre 18 e 21 anos",2.Sim,2.Windows,LG,2.Sim,
+"Matheus Willian",,mathpolato@gmail.com,"Monday, 25 Oct 2021, 20:48",Masculino,"Bacharelado em Sistemas de Informação","Entre 18 e 21 anos",2.Sim,2.Windows,Samsung,2.Sim,
