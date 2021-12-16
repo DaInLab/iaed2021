@@ -9,6 +9,11 @@
 # Ao rodar programa, deve-se verificar se os pacotes necessários estão instalados no RStudio
 if (!"rgeos" %in% installed.packages()) install.packages("rgeos")
 if (!"maptools" %in% installed.packages()) install.packages("maptools")
+
+if (!"udunits2" %in% installed.packages()) install.packages("udunits2")
+
+
+if (!"sf" %in% installed.packages()) install.packages("sf")
 if (!"spdep" %in% installed.packages()) install.packages("spdep")
 if (!"cartography" %in% installed.packages()) install.packages("cartography")
 if (!"tmap" %in% installed.packages()) install.packages("tmap")
@@ -19,9 +24,13 @@ if (!"RColorBrewer" %in% installed.packages()) install.packages("RColorBrewer")
 
 # ...e carregando os pacotes----
 library(rgeos)
-library(maptools)     
+library(maptools) 
+
+library(udunits2)
+library(sf)
+
 library(spdep)          
-library(cartography)    
+library(cartography)
 library(tmap)           
 library(leaflet)        
 library(dplyr)
@@ -31,14 +40,16 @@ library(RColorBrewer)
 #2. Importando shapefile (mapa do Brasil)----
 dsn <- "./dados/" # Indicando o local dos arquivos shapefiles
 list.files(dsn, pattern='\\.shp$') # mostrando a lista de shapefiles no diretório
-shp <- readOGR(dsn="./dados", layer="BRUFE250GC_SIR", stringsAsFactors=FALSE, encoding="UTF-8") # lendo os shapefiles
+shp <- readOGR(dsn="./dados", layer="BRUFE250GC_SIR", 
+               stringsAsFactors=FALSE, encoding="UTF-8") # lendo os shapefiles
 class(shp) # verificando o tipo de arquivo
 
 #3. Importando dataset com os dados a serem plotados no mapa----
 #O dataset “ClassificacaoPontosCorridos.csv” tem os dados dos pontos ganhos por cada clube 
 #no Campeonato Brasileiro desde 2003
 #Importação do arquivo
-pg <- read.csv(paste0(dsn, "ClassificacaoPontosCorridos.csv"), header=T,sep=";", encoding="UTF-8")
+pg <- read.csv(paste0(dsn, "ClassificacaoPontosCorridos.csv"), 
+               header=T,sep=";", encoding="UTF-8")
 ##Sumarização dos pontos ganhos por estado, utilizando as funções do pacote dplyr
 # Nota: O operador de atribuição composta %>% é usado para atualizar um valor, canalizando-o primeiro em uma ou mais expressões e depois atribuindo o resultado.
 pg <- pg %>% group_by(Estado) %>% mutate(cumsum = cumsum(PG))
@@ -49,7 +60,8 @@ pg <- as.data.frame(pg)
 class(pg)
 
 #4. Importando códigos do IBGE e adicionr ao dataset o campo "UF" ----
-ibge <- read.csv(paste0(dsn, "estadosibge.csv"), header=T,sep=",",encoding="UTF-8")
+ibge <- read.csv(paste0(dsn, "estadosibge.csv"), 
+                 header=T,sep=",",encoding="UTF-8")
 pg <- merge(pg,ibge, by.x = "Estado", by.y = "UF")
 # Fazendo a junção entre o dataset e o shapefile----
 pg <- merge(shp,pg, by.x = "CD_GEOCUF", by.y = "Código.UF")
@@ -58,7 +70,10 @@ pg <- merge(shp,pg, by.x = "CD_GEOCUF", by.y = "Código.UF")
 brasileiropg <- merge(shp,pg, by.x = "CD_GEOCUF", by.y = "Código.UF")
 
 #6. Realizando o tratamento e a formatação do data frame espacial
+#proj4string(brasileiropg) <- CRS("+proj=longlat +datum=WGS84 +no_defs")
+
 proj4string(brasileiropg) <- CRS("+proj=longlat +datum=WGS84 +no_defs")
+
 Encoding(brasileiropg$NM_ESTADO) <- "UTF-8"
 brasileiropg$Score[is.na(brasileiropg$Score)] <- 0
 
