@@ -119,3 +119,4 @@ pie(table(meu.dataframe$curso), labels = lbls, edges = 200, radius = 0.8,
     col = c("red", "yellow",  "purple","green3","cyan"),
     border = NULL,
     lty = NULL, main = "Cursos dos Alunos")
+
