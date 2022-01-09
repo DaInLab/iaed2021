@@ -9,7 +9,9 @@ output:
   pdf_document: default
 url: <https://towardsdatascience.com/an-exploratory-data-analysis-project-in-r-a51918ebf34d>
 ---
+
 ### Objetivos:
+
 Resumir e visualizar os dados para uma melhor compreensão, mesmo que todas as variáveis não sejam compreensíveis
 
 Este é um Notebook R [R Markdown] (http://rmarkdown.rstudio.com). Quando você executa o código no notebook, os resultados aparecem abaixo do código.
@@ -61,7 +63,7 @@ Aqui está o nome das colunas e a explicação de cada variável conforme descri
 9. exang: angina induzida por exercício (1 = sim; 0 = não)
 10.oldpeak: (pico anterior) depressão de ST induzida por exercício em relação ao repouso ("ST" refere-se às posições no gráfico de ECG)
 11. slope: (inclinação) a inclinação do segmento ST de pico do exercício (Valor 1: inclinação para cima, Valor 2: plana, Valor 3: inclinação para baixo)
-12.ca: O número dos principais vasos (0–3)
+12.ca: O número dos vasos principais (0–3)
 13.thal: Uma doença do sangue chamada talassemia (1 = normal; 2 = defeito fixo; 3 = defeito reversível)
 14.target: (alvo) doenças cardíacas (0 = não, 1 = sim) 
 
@@ -151,14 +153,14 @@ No gráfico a seguir mostra-se a distribuição da idade da população no conju
 library(ggplot2)
 ggplot(heart, aes(x=age)) +
   geom_histogram() + ggtitle("Distribuição da idade da população")+
-  xlab("Age") + ylab("Density")
+  xlab("Idade") + ylab("Densidade")
 ```
 
 A distribuição é quase normal e ligeiramente enviesada para a direita. A maioria da população encontra-se na faixa etária de 50 a 65 anos. Muito poucas pessoas estão na faixa dos trinta e muito poucas pessoas na faixa dos 70 anos.
 
 Em vez de olhar para cada idade em particular, olhar para a faixa etária pode ser mais significativo em termos de taxa de doenças cardíacas. 
 
-Por esta razão, a a variável age ('idade') foi dividida para formar diferentes grupos de idade e uma coluna (variável) foi criada com o nome 'idade_grp'. 
+Por esta razão, a variável age ('idade') foi dividida para formar diferentes grupos de idade e uma coluna (variável) foi criada com o nome 'idade_grp'. 
 
 ```{r, divisao_idade}
 heart$age_grp = cut(heart$age, breaks = seq(25, 77, 4))
@@ -204,7 +206,7 @@ E o gráfico de barras correspondente a esses dados é mostrado a seguir:
 prop_in_age %>%
   ggplot(aes(x=age_grp, y=heart_disease_proportion)) +
     geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
-    xlab("") + ylab("Proporção de Pessoas com Doença Cardíaca") + ggtitle("Proporção de Doença Cardíaca por Faixa Etária") + 
+    xlab("Faixa Etária") + ylab("Pessoas com Doença Cardíaca") + ggtitle("Proporção de Doença Cardíaca por Faixa Etária") + 
     theme_bw()
 ```
 
@@ -229,24 +231,47 @@ round(prop.table(table(heart$sex, heart$target1)), 2)
 
 Pessoas com doenças cardíacas são muito mais numerosas na população feminina do que as pessoas sem doenças cardíacas. Ao mesmo tempo, na população masculina, 40% não têm doenças cardíacas enquanto apenas 29% têm doenças cardíacas. 
 
-### A inclinação do segmento ST do exercício de pico (slope)
+### Variação do segmento ST do exercício de pico (slope)
 
-Um gráfico de barras de diferentes tipos de declive e condições de doenças cardíacas poderá ser mais apropriado para compreendê-lo. 
+#### Variações do segmento ST
+Durante o exercício de esteira, podem aparecer variações do segmento ST. 
+Quando uma região do coração sofre isquemia persistente, se gera uma imagem de lesão no ECG, produzindo variação do segmento ST, já seja uma elevação ou um descenso do mesmo, dependendo do grau de oclusão da artéria coronária.
+
+#### Elevação do segmento ST na cardiopatia isquêmica
+A elevação aguda do segmento ST no electrocardiograma, é um dos primeiros sinais de infarto agudo do miocárdio, e está geralmente associada com a oclusão aguda e completa de uma artéria coronária.
+
+![Ascenso.](/Users/jpalbino/Library/Mobile Documents/com~apple~CloudDocs/GitHub/iaed2021/exploratory_data_analysis_project/pictures/ascenso-segmento-st.png)
+
+Fonte: (https://pt.my-ekg.com/como-ler-ecg/segmento-st.html)
+
+#### Depressão do segmento ST na cardiopatia isquêmica
+A depressão do segmento ST de forma aguda, é um sinal de lesão miocárdica, igual ao da elevação.
+![Ascenso.](/Users/jpalbino/Library/Mobile Documents/com~apple~CloudDocs/GitHub/iaed2021/exploratory_data_analysis_project/pictures/descenso-segmento-st.png)
+
+Fonte: (https://pt.my-ekg.com/como-ler-ecg/segmento-st.html)
+
+Um gráfico de barras dos diferentes tipos de variação (elevação/aclive ou descenso/declive) e condições de doenças cardíacas pode ser mais adequado para compreendê-lo. 
 
 ```{r, slope_graph_6}
 ggplot(heart, aes(x= slope, fill=target1)) + 
   geom_bar(position = 'dodge') +
-  xlab("Tipo de inclinação") +
+  xlab("Tipo de Variação") +
   ylab("Qtde") +
-  ggtitle("Análise do tipo de inclinação") +
+  ggtitle("Análise do tipo de Variação") +
   scale_fill_discrete(name = "Doença Cardíaca", labels = c("Não", "Sim"))
 ```
 
-Claramente, com diferentes tipos de inclinação, a taxa de doenças cardíacas parece diferente. Com declive, o número de sem doenças cardíacas é muito maior (cerca de 340) do que o número de pacientes com doenças cardíacas (cerca de 125). Mas com uma superfície plana é quase o oposto. O número de cardiopatias é de cerca de 325 e o número de não cardiopatas é de cerca de 160. Na tendência ascendente, não há muitas diferenças, mas o número de cardiopatias é maior do que o número de casos sem cardiopatia.
+Claramente, com diferentes tipos de inclinação, a taxa de doenças cardíacas parece diferente. Com declive, o número de pessoas sem doenças cardíacas é muito maior (cerca de 340) do que o número de pacientes com doenças cardíacas (cerca de 125). 
 
-**Essa tendência é a mesma na população masculina e feminina?**
+Mas com variação plana é quase o oposto. O número de cardiopatias é de cerca de 325 e o número de não cardiopatas é de cerca de 160. 
 
-Outra pergunta válida para responder. O mesmo tipo de gráfico de barras para a parte masculina e feminina do conjunto de dados ajudará a entender isso. 
+Na tendência ascendente, não há muitas diferenças, mas o número de cardiopatias é maior do que o número de casos sem cardiopatia.
+
+Pergunta importante: **Essa tendência é a mesma na população masculina e feminina?**
+
+Outra pergunta válida para responder. 
+
+O mesmo tipo de gráfico de barras para a parte masculina e feminina do conjunto de dados ajudará a entender isso. 
 
 Primeiro, o conjunto de dados será separado para a população masculina e feminina: 
 
@@ -256,27 +281,31 @@ male_data = heart[heart$sex=="male",]
 female_data = heart[heart$sex=="female",]
 ```
 
-Agora, faremos o mesmo gráfico de barras para a população masculina e feminina.
+Agora, utilizaremos o mesmo tipo de gráfico de barras para analisar a população masculina e a feminina.
 
 ```{r, grafico_masculino_8}
 ggplot(male_data, aes(x= slope, fill=target1)) + 
   geom_bar(position = 'dodge') +
-  xlab("Tipo de Inclinação") +
+  xlab("Tipo de Variação") +
   ylab("Qtde") +
-  ggtitle("Análise dos tipos de declive para homens") +
+  ggtitle("Análise dos tipos de variação para homens") +
   scale_fill_discrete(name = "Doença Cardíaca", labels = c("Não", "Sim"))
 ```
 
 ```{r, grafico_masculino_9}
 ggplot(female_data, aes(x= slope, fill=target1)) + 
   geom_bar(position = 'dodge') +
-  xlab("Tipo de Inclinação") +
+  xlab("Tipo de Variação") +
   ylab("Qtde") +
-  ggtitle("Análise dos tipos de declive para mulheres") +
+  ggtitle("Análise dos tipos de variação para mulheres") +
   scale_fill_discrete(name = "Doença Cardíaca", labels = c("Não", "Sim"))
 ```
 
-O gráfico da população masculina segue a mesma tendência do gráfico de barra geral para análise de declive. Mas na população feminina, a tendência é muito diferente. O número decrescente de nenhuma doença cardíaca é muito maior (180) do que o número de doenças cardíacas (25). Novamente, para a inclinação plana, ambos os casos são próximos, mas o número de casos sem doença cardíaca é um pouco maior.
+O gráfico da população masculina segue a mesma tendência do gráfico de barra geral para análise de declive. 
+
+Mas na população feminina, a tendência é muito diferente. O número decrescente de nenhuma doença cardíaca é muito maior (180) do que o número de doenças cardíacas (25). 
+
+Novamente, para a variação plana, ambos os casos são próximos, mas o número de casos sem doença cardíaca é um pouco maior.
 
 ### Número de principais vasos (ca)
 
@@ -288,7 +317,7 @@ mosaicplot(table(heart$target1, heart$ca), col=c("#754869", "coral", "skyblue", 
 
 Cerca de 2/3 das pessoas com doença cardíaca não apresentam nenhum vaso importante. Muito poucas pessoas têm 4 vasos principais. Portanto, é difícil saber o impacto disso.
 
-As populações masculinas e femininas podem ter um número diferente de vasos principais ou níveis diferentes de relacionamento entre os vasos principais e as doenças cardíacas. 
+As populações masculinas e femininas podem ter um número diferente de vasos principais ou níveis diferentes de correlação entre número de vasos principais e doenças cardíacas. 
 
 O gráfico a seguir mostra os principais vasos vs doenças cardíacas em homens: 
 
@@ -304,11 +333,13 @@ A seguir apresentamos o gráfico que mostra a correlação do número de vasos p
 mosaicplot(table(female_data$target1, female_data$ca), col=c("#754869", "coral", "skyblue", "#423f42", "#ed18c6"), las=1, main="Vasos Principais em Mulheres")
 ```
 
-Na população feminina, existem 0, 1, 2 ou 3 vasos principais. Nenhuma mulher tem 4 vasos principais. Como na população masculina, o máximo de mulheres com doenças cardíacas não tem vasos principais. Mais uma vez, na zona sem doença cardíaca, a maioria das mulheres tem 0 ou 2 vasos principais. 
+Na população feminina, existem 0, 1, 2 ou 3 vasos principais. Nenhuma mulher tem 4 vasos principais. 
+
+Como na população masculina, o máximo de mulheres com doenças cardíacas não tem vasos principais. Mais uma vez, na zona sem doença cardíaca, a maioria das mulheres tem 0 ou 2 vasos principais. 
 
 ### Depressão de ST induzida por exercício em relação ao repouso (oldpeak)
 
-Aqui estão os boxplots que mostram a distribuição da depressão do segmento ST para pessoas com doenças cardíacas e sem doenças cardíacas. 
+Os boxplots a seguir mostram a distribuição da depressão do segmento ST para pessoas com doenças cardíacas e sem doenças cardíacas. 
 
 ```{r, boxplot_exercicio_1}
 ggplot(heart, aes(x = target1, y = oldpeak)) + ylab("Depressão ST") + xlab("Estado da Doença Cardíaca")+ ggtitle("Depressão de ST induzida por Exercício vs Cardiopatia")+
@@ -317,7 +348,7 @@ ggplot(heart, aes(x = target1, y = oldpeak)) + ylab("Depressão ST") + xlab("Est
 
 No lado sem doenças cardíacas, o intervalo interquartil é maior (cerca de 2) do que no lado das doenças cardíacas (1).
 
-**Esse tipo de depressão muda com a idade e, juntos, eles têm impactos diferentes nas doenças cardíacas?**
+Questão importante: **Será que esse tipo de depressão muda com a idade e, juntos, eles têm impactos diferentes nas doenças cardíacas?**
 
 Um gráfico de dispersão combinado pode fornecer alguns insights sobre isso. 
 
@@ -325,11 +356,13 @@ Um gráfico de dispersão combinado pode fornecer alguns insights sobre isso.
 ggplot(heart, aes(x = age, y = oldpeak,color=target1, size = factor(oldpeak))) + 
     geom_point(alpha=0.3) + labs(color = "Estado da doença cardíaca")+guides(size=FALSE) + xlab("Idade") + ylab("Depressão ST") + ggtitle("Idade versus Pressão Arterial em repouso separada por Condição Cardíaca ")
 ```
-Conforme discutido no início, este conjunto de dados é diferente. Ele mostra as doenças cardíacas diminuem quanto mais elevada a idade. Parece que quando a depressão do ST aumenta, os casos de doenças cardíacas diminuem. O tamanho dos pontos muda com o açúcar no sangue em repouso. Mas, a partir dessa imagem, é difícil derivar qualquer relação entre idade e depressão de ST.
+Conforme discutido no início, este conjunto de dados é diferente. Ele mostra as doenças cardíacas diminuem quanto mais elevada a idade. Parece que quando a depressão do ST aumenta, os casos de doenças cardíacas diminuem. O tamanho dos pontos muda com o açúcar no sangue em repouso. 
+
+Mas, a partir do gráfico ficou difícil derivar qualquer relação entre idade e depressão de ST.
 
 ### Pressão sanguínea em repouso
 
-Boxplots de açúcares no sangue em repouso separados por estado de doença cardíaca poderão fornecer uma ideia inicial, como mostra o gráfico a seguir. 
+Os boxplots a seguir, mostrando níveis de açúcar no sangue em repouso e separados por estado de doença cardíaca poderão fornecer uma ideia inicial sobre o impacto da pressão sanguínea. 
 
 ```{r, pressao_grafico 15}
 ggplot(heart, aes(x = target1, y = trestbps)) +
@@ -338,7 +371,7 @@ ggplot(heart, aes(x = target1, y = trestbps)) +
 
 O gráfico acima mostra que uma faixa interquartil de açúcar no sangue em repouso é ligeiramente maior para o gráfico sem doença cardíaca. Mas as medianas de ambos os gráficos de caixa parecem iguais.
 
-O próximo gráfico é um gráfico de dispersão de idade versus pressão arterial em repouso, que inclui **cores diferentes para o estado de doença cardíaca e o tamanho do ponto depende da depressão St**. 
+O próximo gráfico é um gráfico de dispersão de idade versus pressão arterial em repouso, com **cores diferentes para o estado de doença cardíaca e o tamanho do ponto depende da depressão St**. 
 Este gráfico deve revelar mais algumas informações.
 
 ```{r, grafico_17}
@@ -348,20 +381,18 @@ geom_point(alpha=0.3)+
   ylab("Açúcar no sangue em repouso ") + 
   labs(color="Estado da doença cardíaca ") + 
   guides(size=FALSE)+
-  ggtitle("Idade versus Pressão Arterial em repouso separada por Condição Cardíaca ")
+  ggtitle("Idade vs Pressão Arterial em repouso vs Condição Cardíaca")
 ```
 
-Este gráfico mostra algo muito interessante. Quando o açúcar no sangue em repouso está realmente baixo, como 100 ou menos, os casos com doença cardíaca são mais elevados do que os casos sem doença cardíaca. Quando a pressão arterial em repouso está acima de 165, os casos sem doença cardíaca é maior do que os casos com doença cardíaca.
+Este gráfico mostra algo muito interessante. Quando o açúcar no sangue em repouso está realmente baixo, como 100 ou menos, os casos com doença cardíaca são mais elevados do que os casos sem doença cardíaca. Quando a pressão arterial em repouso está acima de 165, os casos sem doença cardíaca são maiores que os casos com doença cardíaca.
 
-Como vimos antes, a maioria dos pontos grandes são azuis. Isso significa que mais pessoas com depressão de ST não têm doenças cardíacas. Ao mesmo tempo, um número maior de pontos maiores está na faixa etária mais alta. Portanto, a depressão do ST é maior em pessoas mais velhas.
-
+Como pode ser observado, a maioria dos pontos grandes são azuis. Isso significa que mais pessoas com depressão de ST não têm doenças cardíacas. Ao mesmo tempo, um número maior de pontos maiores está na faixa etária mais alta. Portanto, a depressão do ST é maior em pessoas mais velhas.
 
 ### Conclusão
 
 Tentamos mostrar algumas visualizações e técnicas para resumir um conjunto de dados.
 
-Este conjunto de dados não é muito grande. Possui apenas 14 colunas. Mesmo assim, há muito mais que poderia ser explorado. Existem variáveis que não foram estudadas. 
+O conjunto de dados (dataset) não é muito grande. Possui apenas 14 colunas. Mesmo assim, há muito mais que poderia ser explorado. Existem variáveis que não foram estudadas neste notebook. 
 
 Portanto, sinta-se à vontade para explorar um pouco mais por conta própria.
-
 

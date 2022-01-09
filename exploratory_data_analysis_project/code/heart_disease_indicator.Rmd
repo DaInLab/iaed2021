@@ -1,0 +1,194 @@
+---
+title: "Indicadores de doença cardíaca"
+author: "João Pedro Albino"
+date: "1/9/2022"
+output: html_document
+url: http://rstudio-pubs-static.s3.amazonaws.com/24341_184a58191486470cab97acdbbfe78ed5.html
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "/Users/jpalbino/Library/Mobile Documents/com~apple~CloudDocs/GitHub/iaed2021/exploratory_data_analysis_project")
+```
+
+### Introdução
+
+Este é um documento elaborado utilizando o pacote R Markdown. Markdown é uma sintaxe de formatação simples para a criação de documentos HTML, PDF e MS Word. Para obter mais detalhes sobre o uso de R Markdown, consulte <http://rmarkdown.rstudio.com>.
+
+Quando você clica no botão ** Knit **, um documento é gerado, incluindo tanto o conteúdo quanto a saída de qualquer fragmento de código R embutido no documento.
+
+### Sinopse
+
+O objetivo deste documento é apresentar uma análise simples no conjunto de dados da UCI - Heart Disease Data Set, de forma a ajudar a encontrar os *três atributos mais promissores* para prever possível estreitamento no diâmetro das veias cardíacas. 
+
+Os dados utilizados estão disponíveis no UCI Machine Learning Repository (http://archive.ics.uci.edu/ml/datasets/Heart+Disease) e foram doados por:
+
+- Instituto Húngaro de Cardiologia. Budapeste: Andras Janosi, M.D.
+- Hospital Universitário, Zurique, Suíça: William Steinbrunn, M.D.
+- Hospital Universitário, Basel, Suíça: Matthias Pfisterer, M.D.
+- V.A. Medical Center, Long Beach e Cleveland Clinic Foundation: Robert Detrano, M.D., Ph.D.
+
+O dataset aqui utilizado foi pré-processado pela Universidade de Cleaveland
+
+### Baixando os dados
+
+```{r, baixando_dados}
+if (!file.exists("./data/processed.cleveland.data")) {
+  download.file(url = "http://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data", 
+                destfile = "./data/processed.cleveland.data")
+}
+``` 
+
+Verificando o "checksum" do arquivo armazenado localmente
+
+```{r, verifica_checksum}
+### Carregando o pacote necessário: tools
+require(tools)
+md5sum("./data/processed.cleveland.data")
+
+```
+
+### Carregando dados no dataframe heart.data
+
+```{r, carregando_dados}
+heart.data <- read.csv("./data/processed.cleveland.data", header = FALSE)
+```
+
+A página da fonte da fonte de dados original afirma que devemos ter 303 instâncias e 75 atributos. 
+
+Porém, o arquivo de dados processados pela Cleveland deve ter 14 atributos.
+
+Vamos verificar se temos os dados de forma adequada:
+
+```{r, instancias_atributos_dados}
+nrow(heart.data)
+
+ncol(heart.data)
+
+head(heart.data)
+```
+
+Os dados parecem corretos, então podemos prosseguir com a análise.
+
+A descrição dos atributos do conjunto de dados na página da web são os seguintes:
+
+1.	age - age in years
+2.	sex - sex (1 = male; 0 = female)
+3.	cp - chest pain type (1 = typical angina; 2 = atypical angina; 3 = non-anginal pain; 4 = asymptomatic)
+4.	trestbps - resting blood pressure (in mm Hg on admission to the hospital)
+5.	chol - serum cholestoral in mg/dl
+6.	fbs - fasting blood sugar > 120 mg/dl (1 = true; 0 = false)
+7.	restecg - resting electrocardiographic results (0 = normal; 1 = having ST-T; 2 = hypertrophy)
+8.	thalach - maximum heart rate achieved
+9.	exang - exercise induced angina (1 = yes; 0 = no)
+10.	oldpeak - ST depression induced by exercise relative to rest
+11.	slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)
+12.	ca - number of major vessels (0-3) colored by flourosopy
+13.	thal - 3 = normal; 6 = fixed defect; 7 = reversable defect
+14.	num - the predicted attribute - diagnosis of heart disease (angiographic disease status) (Value 0 = < 50% diameter narrowing; Value 1 = > 50% diameter narrowing)
+
+### Preparando os dados
+
+Para pré-processar os dados, vamos ajustar os nomes das colunas de maneira adequada:
+
+```{r, nome_colunas}
+names(heart.data) <- c("age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal", "num")
+```
+
+Ascolunas *ca* e *thal* possuem observações com valores ausentes (missing values) indicados por “?”. 
+
+Para que possamos tratá-las adequadamente na nossa análise, iremos preenchê-las com NA (Not Available). NA é uma constante lógica de comprimento 1 que contém um indicador de valor ausente. NA pode ser forçado a qualquer outro tipo de vetor, exceto *raw*.
+
+```{r, valores_ausentes}
+heart.data$ca[heart.data$ca == "?"] <- NA
+heart.data$thal[heart.data$thal == "?"] <- NA
+```
+
+Iremos também corrigir os tipos de algumas das variáveis, alterando-os para o tipo *fator*.
+
+**Fator** em R é um tipo de variável usada para categorizar e armazenar os dados, tendo um número limitado de valores diferentes. Um fator armazena os dados como um vetor de valores inteiros. Fator em R também é conhecido como uma variável categórica que armazena valores de dados de string e inteiros como níveis.
+
+```{r, transformando_variaveis}
+heart.data$sex <- factor(heart.data$sex)
+levels(heart.data$sex) <- c("female", "male")
+heart.data$cp <- factor(heart.data$cp)
+levels(heart.data$cp) <- c("typical","atypical","non-anginal","asymptomatic")
+heart.data$fbs <- factor(heart.data$fbs)
+levels(heart.data$fbs) <- c("false", "true")
+heart.data$restecg <- factor(heart.data$restecg)
+levels(heart.data$restecg) <- c("normal","stt","hypertrophy")
+heart.data$exang <- factor(heart.data$exang)
+levels(heart.data$exang) <- c("no","yes")
+heart.data$slope <- factor(heart.data$slope)
+levels(heart.data$slope) <- c("upsloping","flat","downsloping")
+heart.data$ca <- factor(heart.data$ca) # não convertendo o level porque não é necessário
+heart.data$thal <- factor(heart.data$thal)
+levels(heart.data$thal) <- c("normal","fixed","reversable")
+heart.data$num <- factor(heart.data$num) # não convertendo o nível porque não é necessário
+```
+
+### Analisando os dados
+
+Primeira etapa, resumindo os dados transformados:
+
+```{r, resumo_dataset}
+summary(heart.data)
+```
+
+### Selecionado os dados
+
+O conteúdo da variável *num* possui uma ampla faixa de valores (0 - 4). Entretanto, apenas as instâncias com “0” e “1” estão efetivamente relacionadas à possibilidade de estreitamento do diâmetro dos vasos. Portanto, iremos selecionar apenas as observações relacionados a esses dois resultados.
+
+```{r, selecionando}
+heart.data <- heart.data[heart.data$num == "0" | heart.data$num == "1", ]
+```
+
+Verificando novamente se temos os dados de forma adequada:
+
+```{r, check_2}
+nrow(heart.data)
+
+ncol(heart.data)
+
+head(heart.data)
+```
+
+### Árvore de Decisão
+
+**Árvores de decisão** usadas para problemas de classificação são chamadas de *Árvores de Classificação*. Nas árvores de classificação, cada nó terminal ou folha contém um rótulo que indica a classe predita para um determinado conjunto de dados. Neste tipo de árvore pode existir dois ou mais nós terminais com a mesma classe.
+
+*Árvores de Classificação/Decisão* também podem ser definidas como uma representação de uma tabela de decisão sob a forma de árvore. Trata-se de uma forma alternativa de expressar as mesmas regras que são obtidas quando se constrói a tabela.
+
+Para a construção da árvore, será utilizada a biblioteca *rpart*. Rpart é uma biblioteca de aprendizado de máquina em R que é usada para construir árvores de classificação e regressão. Esta biblioteca implementa particionamento recursivo.
+
+```{r, carregando_rpart}
+library(rpart)
+```
+
+Montando a árvore:
+
+```{r, rpart_tree}
+heart.tree <- rpart(num ~ age + sex + cp + trestbps + chol + fbs + restecg + 
+                      thalach + exang + oldpeak + slope + ca + thal,
+                    method = "class", 
+                    data = heart.data)
+```
+
+Plotando a árvore:
+
+```{r, plotando_arvore}
+library(rpart.plot)
+prp(heart.tree, extra = 100)
+````
+
+### Conslusão
+
+Baseado no gráfico da árvore, os três melhores atributos que podem prever o possível estreitamento do diâmetro são as variáveis / colunas: tal, cp e idade.
+
+### R e informações dos pacotes utilizados
+As seguintes versões de R e pacotes foram usadas para a geração deste documento:
+
+```{r, r_and_packages_vesion}
+sessionInfo()
+````
+
+

@@ -1,0 +1,11 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/853872/a3fb048010394e20bccac19529dd3617
+bundleId: https://api.rpubs.com/api/v1/document/853872/a3fb048010394e20bccac19529dd3617
+url: http://rpubs.com/jp_albino/853872
+when: 1641678668.01089
+lastSyncTime: 1641678668.0109
