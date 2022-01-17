@@ -1,13 +1,20 @@
 ---
 title: "Indicadores de doença cardíaca"
 author: "João Pedro Albino"
-date: "1/9/2022"
-output: html_document
+date: "10/01/2022"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
 url: http://rstudio-pubs-static.s3.amazonaws.com/24341_184a58191486470cab97acdbbfe78ed5.html
 ---
 
 ```{r, setup, include=FALSE}
-knitr::opts_knit$set(root.dir = "/Users/jpalbino/Library/Mobile Documents/com~apple~CloudDocs/GitHub/iaed2021/exploratory_data_analysis_project")
+# Quando em OSx:
+#knitr::opts_knit$set(root.dir = "/Users/jpalbino/Library/Mobile Documents/com~apple~CloudDocs/GitHub/iaed2021/exploratory_data_analysis_project")
+
+#Quando em Windows
+knitr::opts_knit$set(root.dir = "D:/GitHub/iaed2021/exploratory_data_analysis_project")
 ```
 
 ### Introdução
@@ -182,7 +189,7 @@ prp(heart.tree, extra = 100)
 
 ### Conslusão
 
-Baseado no gráfico da árvore, os três melhores atributos que podem prever o possível estreitamento do diâmetro são as variáveis / colunas: tal, cp e idade.
+Baseado no gráfico da árvore, os três melhores atributos que podem prever o possível estreitamento do diâmetro são as variáveis / colunas: tal, cp e age.
 
 ### R e informações dos pacotes utilizados
 As seguintes versões de R e pacotes foram usadas para a geração deste documento:
