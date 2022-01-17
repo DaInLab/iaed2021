@@ -376,7 +376,7 @@ This also explains why, in [Exercise 3.3.1](#exercise-3.3.1), the expression `co
 
 ## Common problems {#common-problems .r4ds-section}
 
-`r no_exercises()`
+
 
 ## Facets
 
@@ -718,22 +718,22 @@ ggplot() +
 Recreate the R code necessary to generate the following graphs.
 
 ```{r echo=FALSE, fig.width = 3, out.width = "40%", fig.align = "default", purl = FALSE}
-knitr::include_graphics("img/visualize/unnamed-chunk-29-1.png")
+knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/imagem/unnamed-chunk-29-1.png")
 ```
 ```{r echo=FALSE, fig.width = 3, out.width = "40%", fig.align = "default", purl = FALSE}
-knitr::include_graphics("img/visualize/unnamed-chunk-29-2.png")
+knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/imagem/unnamed-chunk-29-2.png")
 ```
 ```{r echo=FALSE, fig.width = 3, out.width = "40%", fig.align = "default", purl = FALSE}
-knitr::include_graphics("img/visualize/unnamed-chunk-29-3.png")
+knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/imagem/unnamed-chunk-29-3.png")
 ```
 ```{r echo=FALSE, fig.width = 3, out.width = "40%", fig.align = "default", purl = FALSE}
-knitr::include_graphics("img/visualize/unnamed-chunk-29-4.png")
+knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/imagem/unnamed-chunk-29-4.png")
 ```
 ```{r echo=FALSE, fig.width = 3, out.width = "40%", fig.align = "default", purl = FALSE}
-knitr::include_graphics("img/visualize/unnamed-chunk-29-5.png")
+knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/imagem/unnamed-chunk-29-5.png")
 ```
 ```{r echo=FALSE, fig.width = 3, out.width = "40%", fig.align = "default", purl = FALSE}
-knitr::include_graphics("img/visualize/unnamed-chunk-29-6.png")
+knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/imagem/unnamed-chunk-29-6.png")
 ```
 
 </div>
@@ -1393,6 +1393,6 @@ The function `ggthemes::bank_slopes()` will calculate the optimal aspect ratio t
 
 ## The layered grammar of graphics {#the-layered-grammar-of-graphics .r4ds-section}
 
-`r no_exercises()`
+
 
 [^factor]: Internally, this is what the `factor` class, which is covered in [Chapter 15](https://r4ds.had.co.nz/factors.html), does.

@@ -1,7 +1,7 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 # Relational data {#relational-data .r4ds-section}
 
@@ -349,7 +349,7 @@ are shown in the following two diagrams: the first created manually with OmniGra
 and the second programmatically in R with the datamodelr package.
 
 ```{r, echo = FALSE, out.width = NULL, purl = FALSE}
-knitr::include_graphics("diagrams/Lahman2.png")
+knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/graficos/Lahman2.png")
 ```
 
 ```{r cache=FALSE}
@@ -402,7 +402,7 @@ The following diagram shows the relations between the `Batting`, `Pitching`, and
 `Fielding` tables.
 
 ```{r, echo = FALSE, out.width = NULL, purl = FALSE}
-knitr::include_graphics("diagrams/Lahman3.png")
+knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/graficos/Lahman3.png")
 ```
 
 </div>
@@ -925,8 +925,7 @@ carrier_transfer_tbl
 
 ## Join problems {#join-problems .r4ds-section}
 
-`r no_exercises()`
 
 ## Set operations {#set-operations .r4ds-section}
 
-`r no_exercises()`
+

@@ -1,5 +1,7 @@
 ---
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 editor_options:
   chunk_output_type: console
 ---
@@ -357,12 +359,12 @@ parse_time(t2, "%H:%M:%OS %p")
 
 ## Parsing a file {#parsing-a-file .r4ds-section}
 
-`r no_exercises()`
+
 
 ## Writing to a file {#writing-to-a-file .r4ds-section}
 
-`r no_exercises()`
+
 
 ## Other types of data {#other-types-of-data .r4ds-section}
 
-`r no_exercises()`
+
