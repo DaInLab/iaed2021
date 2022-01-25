@@ -1,0 +1,5 @@
+# (PART) Model {-}
+
+# Introduction {#model-intro .r4ds-section}
+
+`r no_exercises()`
