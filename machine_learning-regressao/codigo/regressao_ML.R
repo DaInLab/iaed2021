@@ -68,6 +68,8 @@ plot(fitted(modelo), pch = 16, col = "yellow",
 # Na figura anterior, observe que não há efetivamente um padrão nos resíduos, o que é bom.
 
 coef(modelo)
+# Fórmula da regressâo: Yhat = -39.089556 + 2.221306x
 
-
-
+x = (fitted(modelo)[[1]] + 39.089556) /  2.221306
+x
+#[1] 30.00001 graus de temperatura, venderá 27.54964 sorvetes

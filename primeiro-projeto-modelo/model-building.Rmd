@@ -1,0 +1,677 @@
+# Model building {#model-building .r4ds-section}
+
+## Introduction {#introduction-16 .r4ds-section}
+
+The splines package is needed for the `ns()` function used in one of the 
+solutions.
+
+```{r setup,message=FALSE,cache=FALSE}
+library("tidyverse")
+library("modelr")
+library("lubridate")
+library("broom")
+library("nycflights13")
+library("splines")
+```
+
+```{r}
+options(na.action = na.warn)
+```
+
+## Why are low quality diamonds more expensive? {#diamond-prices .r4ds-section}
+
+This code appears in the section and is necessary for the exercises.
+```{r}
+diamonds2 <- diamonds %>%
+  filter(carat <= 2.5) %>%
+  mutate(
+    lprice = log2(price),
+    lcarat = log2(carat)
+  )
+
+mod_diamond2 <- lm(lprice ~ lcarat + color + cut + clarity, data = diamonds2)
+
+diamonds2 <- add_residuals(diamonds2, mod_diamond2, "lresid2")
+```
+
+### Exercise 24.2.1 {.unnumbered .exercise data-number="24.2.1"}
+
+<div class="question">
+
+In the plot of `lcarat` vs. `lprice`, there are some bright vertical strips. 
+What do they represent?
+
+</div>
+
+<div class="answer">
+
+The distribution of diamonds has more diamonds at round or otherwise human-friendly numbers (fractions).
+
+</div>
+
+### Exercise 24.2.2 {.unnumbered .exercise data-number="24.2.2"}
+
+<div class="question">
+
+If `log(price) = a_0 + a_1 * log(carat)`, what does that say about the relationship between `price` and `carat`?
+
+</div>
+
+<div class="answer">
+
+Following the examples in the chapter, I use a base-2 logarithm.
+
+```{r}
+mod_log <- lm(log2(price) ~ log2(carat), data = diamonds)
+mod_log
+```
+
+The estimated relationship between `carat` and `price` looks like this.
+
+```{r}
+tibble(carat = seq(0.25, 5, by = 0.25)) %>%
+  add_predictions(mod_log) %>%
+  ggplot(aes(x = carat, y = 2^pred)) +
+  geom_line() +
+  labs(x = "carat", y = "price")
+```
+
+The plot shows that the estimated relationship between `carat` and `price` is not linear.
+The exact relationship in this model is if $x$ increases $r$ times, then $y$ increases $r^{a_1}$ times.
+For example, a two times increase in `carat` is associated with the following increase in `price`:
+
+```{r}
+2^coef(mod_log)[2]
+```
+
+Let's confirm this relationship by checking it for a few values of the `carat` variable.
+Let's increase `carat` from 1 to 2.
+
+```{r}
+2^(predict(mod_log, newdata = tibble(carat = 2)) -
+  predict(mod_log, newdata = tibble(carat = 1)))
+```
+
+Note that, since `predict()` predicts `log2(carat)` rather than `carat`, the prediction is exponentiated by 2.
+Now let's increase `carat` from 4 to 2.
+
+```{r}
+2^(predict(mod_log, newdata = tibble(carat = 4)) -
+  predict(mod_log, newdata = tibble(carat = 2)))
+```
+
+Finally, let's increase `carat` from 0.5 to 1.
+
+```{r}
+2^(predict(mod_log, newdata = tibble(carat = 1)) -
+  predict(mod_log, newdata = tibble(carat = 0.5)))
+```
+
+All of these examples return the same value, $2 ^ {a_1} = `r round(2^coef(mod_log)[2], 2)`$.
+
+So why is this?
+Let's ignore the names of the variables in this case and consider the equation:
+$$
+\log_b y = a_0 + a_1 \log x
+$$
+We want to understand how the difference in $y$ is related to the difference in $x$.
+Now, consider this equation at two different values $x_1$ and $x_0$,
+$$
+\log_b y_0 = a_0 + \log_b x_0 \\
+\log_b y_1 = a_0 + \log_b y_1
+$$
+What is the value of the difference, $\log y_1 - \log y_0$? 
+$$
+\begin{aligned}[t]
+\log_b(y_1) - \log_b(y_0) &= (a_0 + a_1 \log_b x_1) - (a_0 + a_1 \log x_0) ,\\
+&= a_1 (\log_b x_1 - \log x_0) , \\
+\log_b \left(\frac{y_1}{y_0} \right) &= \log_b \left(\frac{x_1}{x_0} \right)^{a_1} , \\
+\frac{y_1}{y_0} &=  \left( \frac{x_1}{x_0} \right)^{a_1} .
+\end{aligned}
+$$
+Let $s = y_1 / y_0$ and $r = x_1 / x_0$. Then,
+$$
+s =  r^{a_1} \text{.}
+$$
+In other words, an $r$ times increase in $x$, is associated with a $r^{a_1}$ times  increase in $y$. 
+Note that this relationship does not depend on the base of the logarithm, $b$.
+
+There is another approximation that is commonly used when logarithms appear in regressions.
+
+The first way to show this is using the approximation that $x$ is small, meaning that $x \approx 0$,
+$$
+\log (1 + x) \approx x
+$$
+This approximation is the first order Taylor expansion of the function at $x = 0$.
+Now consider the relationship between the percent change in $x$ and the percent change in $y$,
+$$
+\begin{aligned}[t]
+\log (y + \Delta y) - \log y &= (\alpha + \beta \log (x + \Delta x)) - (\alpha + \beta \log x) \\
+\log \left(\frac{y + \Delta y}{y} \right) &=  \beta \log\left( \frac{x + \Delta x}{x} \right) \\
+\log \left(1 + \frac{\Delta y}{y} \right) &= \beta  \log\left( 1 + \frac{\Delta x}{x} \right) \\
+\frac{\Delta y}{y} &\approx \beta \left(\frac{\Delta x}{x} \right)
+\end{aligned} 
+$$
+Thus a 1% percentage change in $x$ is associated with a $\beta$ percent change in $y$.
+
+This relationship can also be derived by taking the derivative of $\log y$ with respect to $x$.
+First, rewrite the equation in terms of $y$,
+$$
+y = \exp(a_0 + a_1 \log(x))
+$$
+Then differentiate $y$ with respect to $x$,
+$$
+\begin{aligned}[t]
+dy &= \exp(a_0 + a_1 \log x) \left(\frac{a_1}{x}\right) dx \\
+&= a_1 y \left(\frac{dx}{x} \right) \\
+(dy / y) &= a_1 (dx / x) \\
+\%\Delta y &= a_1\%\Delta x
+\end{aligned}
+$$
+
+</div>
+
+### Exercise 24.2.3 {.unnumbered .exercise data-number="24.2.3"}
+
+<div class="question">
+Extract the diamonds that have very high and very low residuals. Is there anything unusual about these diamonds? Are they particularly bad or good, or do you think these are pricing errors?
+</div>
+
+<div class="answer">
+
+The answer to this question is provided in section [24.2.2](https://r4ds.had.co.nz/model-building.html#a-more-complicated-model).
+
+```{r}
+diamonds2 %>%
+  filter(abs(lresid2) > 1) %>%
+  add_predictions(mod_diamond2) %>%
+  mutate(pred = round(2^pred)) %>%
+  select(price, pred, carat:table, x:z) %>%
+  arrange(price)
+```
+
+<div class="alert alert-primary hints-alert">
+I did not see anything too unusual. Do you?
+</div>
+
+</div>
+
+### Exercise 24.2.4 {.unnumbered .exercise data-number="24.2.4"}
+
+<div class="question">
+
+Does the final model, `mod_diamonds2`, do a good job of predicting diamond prices? 
+Would you trust it to tell you how much to spend if you were buying a diamond?
+
+</div>
+
+<div class="answer">
+
+Section [24.2.2](https://r4ds.had.co.nz/model-building.html#a-more-complicated-model) already provides part of the answer to this question.
+
+Plotting the residuals of the model shows that there are some large outliers for small carat sizes.
+The largest of these residuals are a little over two, which means that the true value was four times lower; see [Exercise 24.2.2](#exercise-24.2.2).
+Most of the mass of the residuals is between -0.5 and 0.5, which corresponds to about $\pm 40%$.
+There seems to be a slight downward bias in the residuals as carat size increases.
+
+```{r}
+ggplot(diamonds2, aes(lcarat, lresid2)) +
+  geom_hex(bins = 50)
+```
+
+```{r}
+lresid2_summary <- summarise(diamonds2,
+  rmse = sqrt(mean(lresid2^2)),
+  mae = mean(abs(lresid2)),
+  p025 = quantile(lresid2, 0.025),
+  p975 = quantile(lresid2, 0.975)
+)
+lresid2_summary
+```
+
+While in some cases the model can be wrong, overall the model seems to perform well. 
+The root mean squared error is `r round(lresid2_summary$rmse, 2)` meaning that the 
+average error is about `r round(100 * (1 - (2 ^ lresid2_summary$rmse)))`%.
+Another summary statistics of errors is the mean absolute error (MAE), which is the 
+mean of the absolute values of the errors.
+The MAE is `r round(lresid2_summary$mae, 2)`, which is `r round(100 * (1 - (2 ^ lresid2_summary$mae)))`%.
+Finally, 95% of the residuals are between `r round(lresid2_summary$p025, 2)` and
+`r round(lresid2_summary$p975, 2)`, which correspond to  `r round(100 * (1 - (2 ^ lresid2_summary$p025)))`--`r round(100 * (1 - 2 ^ lresid2_summary$p975))`.
+
+Whether you think that this is a good model depends on factors outside the statistical model itself.
+It will depend on the how the model is being used.
+I have no idea how to price diamonds, so this would be useful to me in order to understand a reasonable price range for a diamond, so I don't get ripped off.
+However, if I were buying and selling diamonds as a business, I would probably require a better model.
+
+</div>
+
+## What affects the number of daily flights? {#what-affects-the-number-of-daily-flights .r4ds-section}
+
+This code is copied from the book and needed for the exercises.
+
+```{r}
+library("nycflights13")
+daily <- flights %>%
+  mutate(date = make_date(year, month, day)) %>%
+  group_by(date) %>%
+  summarise(n = n())
+daily
+
+daily <- daily %>%
+  mutate(wday = wday(date, label = TRUE))
+
+term <- function(date) {
+  cut(date,
+    breaks = ymd(20130101, 20130605, 20130825, 20140101),
+    labels = c("spring", "summer", "fall")
+  )
+}
+
+daily <- daily %>%
+  mutate(term = term(date))
+
+mod <- lm(n ~ wday, data = daily)
+
+daily <- daily %>%
+  add_residuals(mod)
+
+mod1 <- lm(n ~ wday, data = daily)
+mod2 <- lm(n ~ wday * term, data = daily)
+```
+
+### Exercise 24.3.1 {.unnumbered .exercise data-number="24.3.1"}
+
+<div class="question">
+Use your Google sleuthing skills to brainstorm why there were fewer than expected flights on Jan 20, May 26, and Sep 1. 
+(Hint: they all have the same explanation.) 
+How would these days generalize to another year?
+</div>
+
+<div class="answer">
+
+These are the Sundays before Monday holidays Martin Luther King Jr. Day, Memorial Day, and Labor Day.
+For other years, use the dates of the holidays for those years---the third Monday of January for Martin Luther King Jr. Day, the last Monday of May for Memorial Day, and the first Monday in September for Labor Day.
+
+</div>
+
+### Exercise 24.3.2 {.unnumbered .exercise data-number="24.3.2"}
+
+<div class="question">
+
+What do the three days with high positive residuals represent?
+How would these days generalize to another year?
+
+</div>
+
+<div class="answer">
+
+The top three days correspond to the Saturday after Thanksgiving (November 30th),
+the Sunday after Thanksgiving (December 1st), and the Saturday after Christmas (December 28th).
+```{r}
+top_n(daily, 3, resid)
+```
+We could generalize these to other years using the dates of those holidays on those
+years.
+
+</div>
+
+### Exercise 24.3.3 {.unnumbered .exercise data-number="24.3.3"}
+
+<div class="question">
+
+Create a new variable that splits the `wday` variable into terms, but only for Saturdays, i.e., it should have `Thurs`, `Fri`, but `Sat-summer`, `Sat-spring`, `Sat-fall` 
+How does this model compare with the model with every combination of `wday` and `term`?
+
+</div>
+
+<div class="answer">
+
+I'll use the function `case_when()` to do this, though there are other ways which it could be solved.
+```{r}
+daily <- daily %>%
+  mutate(
+    wday2 =
+      case_when(
+        wday == "Sat" & term == "summer" ~ "Sat-summer",
+        wday == "Sat" & term == "fall" ~ "Sat-fall",
+        wday == "Sat" & term == "spring" ~ "Sat-spring",
+        TRUE ~ as.character(wday)
+      )
+  )
+```
+
+```{r}
+mod3 <- lm(n ~ wday2, data = daily)
+
+daily %>%
+  gather_residuals(sat_term = mod3, all_interact = mod2) %>%
+  ggplot(aes(date, resid, colour = model)) +
+  geom_line(alpha = 0.75)
+```
+
+I think the overlapping plot is hard to understand.
+If we are interested in the differences, it is better to plot the differences directly.
+In this code, I use `spread_residuals()` to add one *column* per model, rather than `gather_residuals()` which creates a new row for each model.
+```{r}
+daily %>%
+  spread_residuals(sat_term = mod3, all_interact = mod2) %>%
+  mutate(resid_diff = sat_term - all_interact) %>%
+  ggplot(aes(date, resid_diff)) +
+  geom_line(alpha = 0.75)
+```
+
+The model with terms × Saturday has higher residuals in the fall and lower residuals in the spring than the model with all interactions.
+
+Comparing models, `mod3` has a lower $R^2$ and regression standard error, $\hat{\sigma}$, despite using fewer variables.
+More importantly for prediction purposes, this model has a higher AIC, which is an estimate of the out of sample error.
+```{r}
+glance(mod3) %>% select(r.squared, sigma, AIC, df)
+```
+```{r}
+glance(mod2) %>% select(r.squared, sigma, AIC, df)
+```
+
+</div>
+
+### Exercise 24.3.4 {.unnumbered .exercise data-number="24.3.4"}
+
+<div class="question">
+
+Create a new `wday` variable that combines the day of week, term (for Saturdays), and public holidays. 
+What do the residuals of that model look like?
+
+</div>
+
+<div class="answer">
+
+The question is unclear how to handle public holidays. There are several questions to consider.
+
+First, what are the public holidays? I include all [federal holidays in the United States](https://en.wikipedia.org/wiki/Federal_holidays_in_the_United_States) in 2013.
+Other holidays to consider would be Easter and Good Friday which is US stock market holiday and widely celebrated religious holiday, Mothers Day, Fathers Day,
+and Patriots' Day, which is a holiday in several states, and other state holidays.
+```{r}
+holidays_2013 <-
+  tribble(
+    ~holiday, ~date,
+    "New Year's Day", 20130101,
+    "Martin Luther King Jr. Day", 20130121,
+    "Washington's Birthday", 20130218,
+    "Memorial Day", 20130527,
+    "Independence Day", 20130704,
+    "Labor Day", 20130902,
+    "Columbus Day", 20131028,
+    "Veteran's Day", 20131111,
+    "Thanksgiving", 20131128,
+    "Christmas", 20131225
+  ) %>%
+  mutate(date = lubridate::ymd(date))
+```
+
+The model could include a single dummy variable which indicates a day was a public holiday.
+Alternatively, I could include a dummy variable for each public holiday.
+I would expect that Veteran's Day and Washington's Birthday have a different effect on travel than Thanksgiving, Christmas, and New Year's Day.
+
+Another question is whether and how I should handle the days before and after holidays.
+Travel could be lighter on the day of the holiday,
+but heavier the day before or after.
+
+```{r}
+daily <- daily %>%
+  mutate(
+    wday3 =
+      case_when(
+        date %in% (holidays_2013$date - 1L) ~ "day before holiday",
+        date %in% (holidays_2013$date + 1L) ~ "day after holiday",
+        date %in% holidays_2013$date ~ "holiday",
+        .$wday == "Sat" & .$term == "summer" ~ "Sat-summer",
+        .$wday == "Sat" & .$term == "fall" ~ "Sat-fall",
+        .$wday == "Sat" & .$term == "spring" ~ "Sat-spring",
+        TRUE ~ as.character(.$wday)
+      )
+  )
+
+mod4 <- lm(n ~ wday3, data = daily)
+
+daily %>%
+  spread_residuals(resid_sat_terms = mod3, resid_holidays = mod4) %>%
+  mutate(resid_diff = resid_holidays - resid_sat_terms) %>%
+  ggplot(aes(date, resid_diff)) +
+  geom_line(alpha = 0.75)
+```
+
+</div>
+
+### Exercise 24.3.5 {.unnumbered .exercise data-number="24.3.5"}
+
+<div class="question">
+
+What happens if you fit a day of week effect that varies by month (i.e., `n ~ wday * month`)?
+Why is this not very helpful?
+
+</div>
+
+<div class="answer">
+
+```{r}
+daily <- mutate(daily, month = factor(lubridate::month(date)))
+mod6 <- lm(n ~ wday * month, data = daily)
+print(summary(mod6))
+```
+
+If we fit a day of week effect that varies by month, there will be `12 * 7 = 84` parameters in the model.
+Since each month has only four to five weeks, each of these day of week $\times$ month effects is the average of only four or five observations.
+These estimates have large standard errors and likely not generalize well beyond the sample data, since they are estimated from only a few observations.
+
+</div>
+
+### Exercise 24.3.6 {.unnumbered .exercise data-number="24.3.6"}
+
+<div class="question">
+What would you expect the model `n ~ wday + ns(date, 5)` to look like?
+Knowing what you know about the data, why would you expect it to be not particularly effective?
+</div>
+
+<div class="answer">
+
+Previous models fit in the chapter and exercises show that the effects of days of the week vary across different times of the year. 
+The model `wday + ns(date, 5)` does not interact the day of week effect (`wday`) with the time of year effects (`ns(date, 5)`).
+
+I estimate a model which does not interact the day of week effects (`mod7`) with the spline to that which does (`mod8`).
+I need to load the splines package to use the `ns()` function.
+```{r}
+mod7 <- lm(n ~ wday + ns(date, 5), data = daily)
+mod8 <- lm(n ~ wday * ns(date, 5), data = daily)
+```
+
+The residuals of the model that does not interact day of week with time of year (`mod7`) are larger than those of the model that does (`mod8`). 
+The model `mod7` underestimates weekends during the summer and overestimates weekends during the autumn.
+```{r}
+daily %>%
+  gather_residuals(mod7, mod8) %>%
+  ggplot(aes(x = date, y = resid, color = model)) +
+  geom_line(alpha = 0.75)
+```
+
+</div>
+
+### Exercise 24.3.7 {.unnumbered .exercise data-number="24.3.7"}
+
+<div class="question">
+
+We hypothesized that people leaving on Sundays are more likely to be business travelers who need to be somewhere on Monday.
+Explore that hypothesis by seeing how it breaks down based on distance and time: 
+if it’s true, you’d expect to see more Sunday evening flights to places that are far away.
+
+</div>
+
+<div class="answer">
+
+Comparing the average distances of flights by day of week, Sunday flights are the second longest.
+Saturday flights are the longest on average.
+Saturday may have the longest flights on average because there are fewer regularly scheduled short business/commuter flights on the weekends but that is speculation.
+
+```{r}
+flights %>%
+  mutate(
+    date = make_date(year, month, day),
+    wday = wday(date, label = TRUE)
+  ) %>%
+  ggplot(aes(y = distance, x = wday)) +
+  geom_boxplot() +
+  labs(x = "Day of Week", y = "Average Distance")
+```
+
+Hide outliers.
+```{r}
+flights %>%
+  mutate(
+    date = make_date(year, month, day),
+    wday = wday(date, label = TRUE)
+  ) %>%
+  ggplot(aes(y = distance, x = wday)) +
+  geom_boxplot(outlier.shape = NA) +
+  labs(x = "Day of Week", y = "Average Distance")
+```
+
+Try pointrange with mean and standard error of the mean (sd / sqrt(n)).
+```{r}
+flights %>%
+  mutate(
+    date = make_date(year, month, day),
+    wday = wday(date, label = TRUE)
+  ) %>%
+  ggplot(aes(y = distance, x = wday)) +
+  stat_summary() +
+  labs(x = "Day of Week", y = "Average Distance")
+```
+
+Try pointrange with mean and standard error of the mean (sd / sqrt(n)).
+```{r}
+flights %>%
+  mutate(
+    date = make_date(year, month, day),
+    wday = wday(date, label = TRUE)
+  ) %>%
+  ggplot(aes(y = distance, x = wday)) +
+  geom_violin() +
+  labs(x = "Day of Week", y = "Average Distance")
+```
+
+```{r}
+flights %>%
+  mutate(
+    date = make_date(year, month, day),
+    wday = wday(date, label = TRUE)
+  ) %>%
+  filter(
+    distance < 3000,
+    hour >= 5, hour <= 21
+  ) %>%
+  ggplot(aes(x = hour, color = wday, y = ..density..)) +
+  geom_freqpoly(binwidth = 1)
+```
+
+```{r}
+flights %>%
+  mutate(
+    date = make_date(year, month, day),
+    wday = wday(date, label = TRUE)
+  ) %>%
+  filter(
+    distance < 3000,
+    hour >= 5, hour <= 21
+  ) %>%
+  group_by(wday, hour) %>%
+  summarise(distance = mean(distance)) %>%
+  ggplot(aes(x = hour, color = wday, y = distance)) +
+  geom_line()
+```
+
+```{r}
+flights %>%
+  mutate(
+    date = make_date(year, month, day),
+    wday = wday(date, label = TRUE)
+  ) %>%
+  filter(
+    distance < 3000,
+    hour >= 5, hour <= 21
+  ) %>%
+  group_by(wday, hour) %>%
+  summarise(distance = sum(distance)) %>%
+  group_by(wday) %>%
+  mutate(prop_distance = distance / sum(distance)) %>%
+  ungroup() %>%
+  ggplot(aes(x = hour, color = wday, y = prop_distance)) +
+  geom_line()
+```
+
+<!--
+|time of day    | start time | end time |
+|:--------------|:-----------|:---------|
+| Early morning | 12 am      |    5 am  |
+| Morning       | 5 am       |    12 pm |
+| Afternoon     | 12 pm      |    6 pm  |
+| Evening       | 6 pm       |    12 pm |
+
+```{r}
+flights %>%
+  mutate(
+    date = make_date(year, month, day),
+    wday = wday(date, label = TRUE),
+    time = factor(case_when(
+      hour < 5 ~ "Early morning",
+      hour < 12 ~ "Morning",
+      hour < 18 ~ "Afternoon",
+      TRUE ~ "Evening"
+    ),
+    levels = c(
+      "Early morning", "Morning",
+      "Afternoon", "Evening"
+    )
+    )
+  ) %>%
+  group_by(wday, time) %>%
+  filter(time != "Early morning") %>%
+  summarise(distance = mean(distance)) %>%
+  ggplot(aes(color = wday, y = distance, x = time)) +
+  geom_point()
+```
+-->
+
+</div>
+
+### Exercise 24.3.8 {.unnumbered .exercise data-number="24.3.8"}
+
+<div class="question">
+
+It’s a little frustrating that Sunday and Saturday are on separate ends of the plot.
+Write a small function to set the levels of the factor so that the week starts on Monday.
+
+</div>
+
+<div class="answer">
+
+See the chapter [Factors](https://r4ds.had.co.nz/factors.html) for the function `fct_relevel()`.
+Use `fct_relevel()` to put all levels in-front of the first level ("Sunday").
+
+```{r}
+monday_first <- function(x) {
+  fct_relevel(x, levels(x)[-1])
+}
+```
+
+Now Monday is the first day of the week.
+```{r}
+daily <- daily %>%
+  mutate(wday = wday(date, label = TRUE))
+ggplot(daily, aes(monday_first(wday), n)) +
+  geom_boxplot() +
+  labs(x = "Day of Week", y = "Number of flights")
+```
+
+</div>
+
+## Learning more about models {#learning-more-about-models .r4ds-section}
+
+`r no_exercises()`

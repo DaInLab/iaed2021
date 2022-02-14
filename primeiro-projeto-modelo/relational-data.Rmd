@@ -1,8 +1,3 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
 # Relational data {#relational-data .r4ds-section}
 
 ## Introduction {#introduction-7 .r4ds-section}
@@ -13,15 +8,7 @@ The datamodelr package is used to draw database schema.
 library("tidyverse")
 library("nycflights13")
 library("viridis")
-#devtools::install_github("bergant/datamodelr") this package has no maintenance ! Deprecated!
 library("datamodelr")
-#library(dm)
-library(maps)
-library(babynames)
-library(fueleconomy)
-library(Lahman)
-library(nasaweather)
-library (DiagrammeR)
 ```
 
 ## nycflights13 {#nycflights13-relational .r4ds-section}
@@ -90,8 +77,7 @@ The line representing the new relation between `weather` and `airports` is color
 The lines representing the old relations are gray and thinner.
 
 ```{r, echo = FALSE, out.width = NULL, purl = FALSE}
-#knitr::include_graphics("diagrams/nycflights.png")
-knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/graficos/nycflights.png")
+knitr::include_graphics("diagrams/nycflights.png")
 ```
 
 </div>
@@ -294,8 +280,7 @@ in *R for Data Science* .
 It shows the relations between the `Master`, `Batting` and `Salaries` tables.
 
 ```{r, echo = FALSE, out.width = NULL, purl = FALSE}
-#knitr::include_graphics("diagrams/Lahman1.png")
-knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/graficos/Lahman1.png")
+knitr::include_graphics("diagrams/Lahman1.png")
 ```
 
 Another option to draw database schema diagrams is the R package [datamodelr](https://github.com/bergant/datamodelr), which can programmatically create database schema diagrams.
@@ -349,7 +334,7 @@ are shown in the following two diagrams: the first created manually with OmniGra
 and the second programmatically in R with the datamodelr package.
 
 ```{r, echo = FALSE, out.width = NULL, purl = FALSE}
-knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/graficos/Lahman2.png")
+knitr::include_graphics("diagrams/Lahman2.png")
 ```
 
 ```{r cache=FALSE}
@@ -402,7 +387,7 @@ The following diagram shows the relations between the `Batting`, `Pitching`, and
 `Fielding` tables.
 
 ```{r, echo = FALSE, out.width = NULL, purl = FALSE}
-knitr::include_graphics("D:/GitHub/iaed2021/primeiro-projeto-modelo/graficos/Lahman3.png")
+knitr::include_graphics("diagrams/Lahman3.png")
 ```
 
 </div>
@@ -925,7 +910,8 @@ carrier_transfer_tbl
 
 ## Join problems {#join-problems .r4ds-section}
 
+`r no_exercises()`
 
 ## Set operations {#set-operations .r4ds-section}
 
-
+`r no_exercises()`

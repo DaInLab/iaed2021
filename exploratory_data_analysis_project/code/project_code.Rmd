@@ -3,10 +3,10 @@ title: "Um Projeto de Análise Exploratória de Dados em R"
 author: "Rashida Nasrin Sucky"
 date: "22 dez. 2020"
 output:
+  word_document: default
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
-  word_document: default
 url: <https://towardsdatascience.com/an-exploratory-data-analysis-project-in-r-a51918ebf34d>
 ---
 
