@@ -1,7 +1,12 @@
-#install.packages("remotes")
+if(!("remotes") %in% installed.packages()) install.packages("remotes")
+if(!("sf") %in% installed.packages()) install.packages("sf")
+
+
 remotes::install_github("schochastics/roughsf")
 install.packages("sf")
 install.packages("rnaturalearthdata")
+install.packages("udunits2")
+install.packages("rnaturalearth")
 
 library(roughsf)
 library(rnaturalearth)

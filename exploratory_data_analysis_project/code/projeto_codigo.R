@@ -18,6 +18,7 @@ heart = read.csv("./data/heart.csv")
 # Preparação de dados
 # Inicialmente iremos verificar a correlação entre as doenças cardíacas e as outras variáveis no conjunto de dados.
 # Será utilizada a biblioteca ‘corrplot’ para gerar um gráfico que mostrará a correlação de cada variável com as outras.
+if(!("corrplot") %in% installed.packages()) install.packages("corrplot")
 library(corrplot)
 # Armazenando os gráficos resultantes, com formato jpeg, no diretório 'graphics'
 jpeg(file = "./graphics/correlacao.jpeg")

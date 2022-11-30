@@ -89,7 +89,7 @@ lbls <- paste(lbls,"%",sep="") # adicionar o símbolo % aos labels
 
 #Desenhando o gráfico
 pie(table(meu.dataframe$marca), labels = lbls, edges = 200, radius = 0.8,
-    clockwise = TRUE, density = 60, angle = 45, 
+    clockwise = F, density = 60, angle = 45, 
     col = c("red", "yellow",  "purple","green3","cyan"),
     border = NULL,
     lty = NULL, main = "Marca dos Laptops")

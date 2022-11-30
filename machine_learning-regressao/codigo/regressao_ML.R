@@ -73,3 +73,4 @@ coef(modelo)
 x = (fitted(modelo)[[1]] + 39.089556) /  2.221306
 x
 #[1] 30.00001 graus de temperatura, venderá 27.54964 sorvetes
+

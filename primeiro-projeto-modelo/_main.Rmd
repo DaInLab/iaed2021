@@ -1,0 +1,758 @@
+---
+knit: "bookdown::render_book"
+title: "R for Data Science: Exercise Solutions"
+date: >-
+  `r format(Sys.Date(), "%B %d, %Y")`
+author: ["Jeffrey B. Arnold"]
+description: >
+  Solutions to the exercises in 
+  "R for Data Science" by Garrett Grolemund and Hadley Wickham.
+site: bookdown::bookdown_site
+github-repo: "jrnold/r4ds-exercise-solutions"
+url: 'http\://jrnold.github.io/r4ds-exercise-solutions'
+twitter-handle: jrnld
+documentclass: book
+bibliography: ["r4ds.bib"]
+link-citations: true
+biblio-stye: apalike
+cover-image: /img/r4ds-exercise-solutions-cover.png
+---
+
+# Welcome {-}
+
+Placeholder
+
+
+## Acknowledgments {-}
+## License {-}
+
+<!--chapter:end:index.Rmd-->
+
+# (PART) Appendixes {-}
+
+# References {-}
+
+<!--chapter:end:appendixes.Rmd-->
+
+# (PART) Communicate {-}
+
+# Introduction {#communicate-intro .r4ds-section}
+
+`r no_exercises()`
+
+<!--chapter:end:communicate.Rmd-->
+
+# Contributing
+
+Like *R for Data Science*, the solutions to it have been developed in the open, and they can improve with your contributions. There are a number of ways you can help make the solutions even better:
+
+-   If you don't understand something, please
+    [let me know](mailto:jeffrey.arnold@gmail.com). Your feedback on what is confusing or hard to understand is valuable.
+
+-   If you spot a typo, feel free to edit the underlying page and send a pull
+    request. If you've never done this before, the process is very easy:
+
+    -   Click the edit this page on the sidebar.
+
+    -   Make the changes using GitHub's in-page editor and save.
+
+    -   Submit a pull request and include a brief description of your changes.
+        "Fixing typos" is perfectly adequate.
+
+<!--chapter:end:contributions.Rmd-->
+
+
+# Dates and times {#dates-and-times .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-10 .r4ds-section}
+## Creating date/times {#creating-datetimes .r4ds-section}
+### Exercise 16.2.1 {.unnumbered .exercise data-number="16.2.1"}
+### Exercise 16.2.2 {.unnumbered .exercise data-number="16.2.2"}
+### Exercise 16.2.3 {.unnumbered .exercise data-number="16.2.3"}
+## Date-time components {#date-time-components .r4ds-section}
+### Exercise 16.3.1 {.unnumbered .exercise data-number="16.3.1"}
+### Exercise 16.3.2 {.unnumbered .exercise data-number="16.3.2"}
+### Exercise 16.3.3 {.unnumbered .exercise data-number="16.3.3"}
+### Exercise 16.3.4 {.unnumbered .exercise data-number="16.3.4"}
+### Exercise 16.3.5 {.unnumbered .exercise data-number="16.3.5"}
+### Exercise 16.3.6 {.unnumbered .exercise data-number="16.3.6"}
+### Exercise 16.3.7 {.unnumbered .exercise data-number="16.3.7"}
+## Time spans {#time-spans .r4ds-section}
+### Exercise 16.4.1 {.unnumbered .exercise data-number="16.4.1"}
+### Exercise 16.4.2 {.unnumbered .exercise data-number="16.4.2"}
+### Exercise 16.4.3 {.unnumbered .exercise data-number="16.4.3"}
+### Exercise 16.4.4 {.unnumbered .exercise data-number="16.4.4"}
+### Exercise 16.4.5 {.unnumbered .exercise data-number="16.4.5"}
+## Time zones {#time-zones .r4ds-section}
+
+<!--chapter:end:datetimes.Rmd-->
+
+
+# Exploratory Data Analysis {#exploratory-data-analysis .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-3 .r4ds-section}
+## Questions {#questions .r4ds-section}
+## Variation {#variation .r4ds-section}
+### Exercise 7.3.1 {.unnumbered .exercise data-number="7.3.1"}
+### Exercise 7.3.2 {.unnumbered .exercise data-number="7.3.2"}
+### Exercise 7.3.3 {.unnumbered .exercise data-number="7.3.3"}
+### Exercise 7.3.4 {.unnumbered .exercise data-number="7.3.4"}
+## Missing values {#missing-values-2 .r4ds-section}
+### Exercise 7.4.1 {.unnumbered .exercise data-number="7.4.1"}
+### Exercise 7.4.2 {.unnumbered .exercise data-number="7.4.2"}
+## Covariation {#covariation .r4ds-section}
+### A categorical and continuous variable
+#### Exercise 7.5.1.1 {.unnumbered .exercise data-number="7.5.1.1"}
+#### Exercise 7.5.1.2 {.unnumbered .exercise data-number="7.5.1.2"}
+#### Exercise 7.5.1.3 {.unnumbered .exercise data-number="7.5.1.3"}
+#### Exercise 7.5.1.4 {.unnumbered .exercise data-number="7.5.1.4"}
+#### Exercise 7.5.1.5 {.unnumbered .exercise data-number="7.5.1.5"}
+#### Exercise 7.5.1.6 {.unnumbered .exercise data-number="7.5.1.6"}
+### Two categorical variables
+#### Exercise 7.5.2.1 {.unnumbered .exercise data-number="7.5.2.1"}
+#### Exercise 7.5.2.2 {.unnumbered .exercise data-number="7.5.2.2"}
+#### Exercise 7.5.2.3 {.unnumbered .exercise data-number="7.5.2.3"}
+### Two continuous variables
+#### Exercise 7.5.3.1 {.unnumbered .exercise data-number="7.5.3.1"}
+#### Exercise 7.5.3.2 {.unnumbered .exercise data-number="7.5.3.2"}
+#### Exercise 7.5.3.3 {.unnumbered .exercise data-number="7.5.3.3"}
+#### Exercise 7.5.3.4 {.unnumbered .exercise data-number="7.5.3.4"}
+#### Exercise 7.5.3.5 {.unnumbered .exercise data-number="7.5.3.5"}
+## Patterns and models {#patterns-and-models .r4ds-section}
+## ggplot2 calls {#ggplot2-calls .r4ds-section}
+## Learning more {#learning-more .r4ds-section}
+
+<!--chapter:end:EDA.Rmd-->
+
+# (PART) Explore {-}
+
+# Introduction {#explore-intro .r4ds-section}
+
+`r no_exercises()`
+
+<!--chapter:end:explore.Rmd-->
+
+
+# Factors {#factors .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-9 .r4ds-section}
+## Creating factors {#creating-factors .r4ds-section}
+## General Social Survey {#general-social-survey .r4ds-section}
+### Exercise 15.3.1 {.unnumbered .exercise data-number="15.3.1"}
+### Exercise 15.3.2 {.unnumbered .exercise data-number="15.3.2"}
+### Exercise 15.3.3 {.unnumbered .exercise data-number="15.3.3"}
+## Modifying factor order {#modifying-factor-order .r4ds-section}
+### Exercise 15.4.1 {.unnumbered .exercise data-number="15.4.1"}
+### Exercise 15.4.2 {.unnumbered .exercise data-number="15.4.2"}
+### Exercise 15.4.3 {.unnumbered .exercise data-number="15.4.3"}
+## Modifying factor levels {#modifying-factor-levels .r4ds-section}
+### Exercise 15.5.1 {.unnumbered .exercise data-number="15.5.1"}
+### Exercise 15.5.2 {.unnumbered .exercise data-number="15.5.2"}
+
+<!--chapter:end:factors.Rmd-->
+
+
+# Functions {#functions .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-12 .r4ds-section}
+## When should you write a function? {#when-should-you-write-a-function .r4ds-section}
+### Exercise 19.2.1 {.unnumbered .exercise data-number="19.2.1"}
+### Exercise 19.2.2 {.unnumbered .exercise data-number="19.2.2"}
+### Exercise 19.2.3 {.unnumbered .exercise data-number="19.2.3"}
+### Exercise 19.2.4 {.unnumbered .exercise data-number="19.2.4"}
+### Exercise 19.2.5 {.unnumbered .exercise data-number="19.2.5"}
+### Exercise 19.2.6 {.unnumbered .exercise data-number="19.2.6"}
+### Exercise 19.2.7 {.unnumbered .exercise data-number="19.2.7"}
+## Functions are for humans and computers {#functions-are-for-humans-and-computers .r4ds-section}
+### Exercise 19.3.1 {.unnumbered .exercise data-number="19.3.1"}
+### Exercise 19.3.2 {.unnumbered .exercise data-number="19.3.2"}
+### Exercise 19.3.3 {.unnumbered .exercise data-number="19.3.3"}
+### Exercise 19.3.4 {.unnumbered .exercise data-number="19.3.4"}
+## Conditional execution {#conditional-execution .r4ds-section}
+### Exercise 19.4.1 {.unnumbered .exercise data-number="19.4.1"}
+### Exercise 19.4.2 {.unnumbered .exercise data-number="19.4.2"}
+### Exercise 19.4.3 {.unnumbered .exercise data-number="19.4.3"}
+### Exercise 19.4.4 {.unnumbered .exercise data-number="19.4.4"}
+### Exercise 19.4.5 {.unnumbered .exercise data-number="19.4.5"}
+### Exercise 19.4.6 {.unnumbered .exercise data-number="19.4.6"}
+## Function arguments {#function-arguments .r4ds-section}
+### Exercise 19.5.1 {.unnumbered .exercise data-number="19.5.1"}
+### Exercise 19.5.2 {.unnumbered .exercise data-number="19.5.2"}
+### Exercise 19.5.3 {.unnumbered .exercise data-number="19.5.3"}
+### Exercise 19.5.4 {.unnumbered .exercise data-number="19.5.4"}
+## Return values {#return-values .r4ds-section}
+## Environment {#environment .r4ds-section}
+
+<!--chapter:end:functions.Rmd-->
+
+
+# Graphics for communication {#graphics-for-communication .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-19 .r4ds-section}
+## Label {#label .r4ds-section}
+### Exercise 28.2.1 {.unnumbered .exercise data-number="28.2.1"}
+### Exercise 28.2.2 {.unnumbered .exercise data-number="28.2.2"}
+### Exercise 28.2.3 {.unnumbered .exercise data-number="28.2.3"}
+## Annotations {#annotations .r4ds-section}
+### Exercise 28.3.1 {.unnumbered .exercise data-number="28.3.1"}
+### Exercise 28.3.2 {.unnumbered .exercise data-number="28.3.2"}
+### Exercise 28.3.3 {.unnumbered .exercise data-number="28.3.3"}
+### Exercise 28.3.4 {.unnumbered .exercise data-number="28.3.4"}
+### Exercise 28.3.5 {.unnumbered .exercise data-number="28.3.5"}
+## Scales {#scales .r4ds-section}
+### Exercise 28.4.1 {.unnumbered .exercise data-number="28.4.1"}
+### Exercise 28.4.2 {.unnumbered .exercise data-number="28.4.2"}
+### Exercise 28.4.3 {.unnumbered .exercise data-number="28.4.3"}
+### Exercise 28.4.4 {.unnumbered .exercise data-number="28.4.4"}
+## Zooming {#zooming .r4ds-section}
+## Themes {#themes .r4ds-section}
+## Saving your plots {#saving-your-plots .r4ds-section}
+## Learning more {#learning-more-4 .r4ds-section}
+
+<!--chapter:end:graphics-for-communication.Rmd-->
+
+
+# Data import {#data-import .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-5 .r4ds-section}
+## Getting started {#getting-started .r4ds-section}
+### Exercise 11.2.1 {.unnumbered .exercise data-number="11.2.1"}
+### Exercise 11.2.2 {.unnumbered .exercise data-number="11.2.2"}
+### Exercise 11.2.3 {.unnumbered .exercise data-number="11.2.3"}
+### Exercise 11.2.4 {.unnumbered .exercise data-number="11.2.4"}
+### Exercise 11.2.5 {.unnumbered .exercise data-number="11.2.5"}
+## Parsing a vector {#parsing-a-vector .r4ds-section}
+### Exercise 11.3.1 {.unnumbered .exercise data-number="11.3.1"}
+### Exercise 11.3.2 {.unnumbered .exercise data-number="11.3.2"}
+### Exercise 11.3.3 {.unnumbered .exercise data-number="11.3.3"}
+### Exercise 11.3.4 {.unnumbered .exercise data-number="11.3.4"}
+### Exercise 11.3.5 {.unnumbered .exercise data-number="11.3.5"}
+### Exercise 11.3.6 {.unnumbered .exercise data-number="11.3.6"}
+### Exercise 11.3.7 {.unnumbered .exercise data-number="11.3.7"}
+## Parsing a file {#parsing-a-file .r4ds-section}
+## Writing to a file {#writing-to-a-file .r4ds-section}
+## Other types of data {#other-types-of-data .r4ds-section}
+
+<!--chapter:end:import.Rmd-->
+
+
+# Introduction {#introduction .r4ds-section}
+
+Placeholder
+
+
+## How this book is organized {-}
+## Prerequisites {-}
+## Bugs/Contributing {-}
+## Colophon {-}
+
+<!--chapter:end:intro.Rmd-->
+
+
+# Iteration {#iteration .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-14 .r4ds-section}
+## For loops {#for-loops .r4ds-section}
+### Exercise 21.2.1 {.unnumbered .exercise data-number="21.2.1"}
+### Exercise 21.2.2 {.unnumbered .exercise data-number="21.2.2"}
+### Exercise 21.2.3 {.unnumbered .exercise data-number="21.2.3"}
+#### Exercise 21.2.4 {.unnumbered .exercise data-number="21.2.4"}
+## For loop variations {#for-loop-variations .r4ds-section}
+### Exercise 21.3.1 {.unnumbered .exercise data-number="21.3.1"}
+### Exercise 21.3.2 {.unnumbered .exercise data-number="21.3.2"}
+### Exercise 21.3.3 {.unnumbered .exercise data-number="21.3.3"}
+### Exercise 21.3.4 {.unnumbered .exercise data-number="21.3.4"}
+## For loops vs. functionals {#for-loops-vs.functionals .r4ds-section}
+### Exercise 21.4.1 {.unnumbered .exercise data-number="21.4.1"}
+### Exercise 21.4.2 {.unnumbered .exercise data-number="21.4.2"}
+## The map functions {#the-map-functions .r4ds-section}
+### Exercise 21.5.1 {.unnumbered .exercise data-number="21.5.1"}
+### Exercise 21.5.2 {.unnumbered .exercise data-number="21.5.2"}
+### Exercise 21.5.3 {.unnumbered .exercise data-number="21.5.3"}
+### Exercise 21.5.4 {.unnumbered .exercise data-number="21.5.4"}
+### Exercise 21.5.5 {.unnumbered .exercise data-number="21.5.5"}
+## Dealing with failure {#dealing-with-failure .r4ds-section}
+## Mapping over multiple arguments {#mapping-over-multiple-arguments .r4ds-section}
+## Walk {#walk .r4ds-section}
+## Other patterns of for loops {#other-patterns-of-for-loops .r4ds-section}
+### Exercise 21.9.1 {.unnumbered .exercise data-number="21.9.1"}
+### Exercise 21.9.2 {.unnumbered .exercise data-number="21.9.2"}
+### Exercise 21.9.3 {.unnumbered .exercise data-number="21.9.3"}
+
+<!--chapter:end:iteration.Rmd-->
+
+
+# Many models {#many-models .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-17 .r4ds-section}
+## gapminder {#gapminder .r4ds-section}
+### Exercise 25.2.1 {.unnumbered .exercise data-number="25.2.1"}
+### Exercise 25.2.2 {.unnumbered .exercise data-number="25.2.2"}
+### Exercise 25.2.3 {.unnumbered .exercise data-number="25.2.3"}
+## List-columns {#list-columns-1 .r4ds-section}
+## Creating list-columns {#creating-list-columns .r4ds-section}
+### Exercise 25.4.1 {.unnumbered .exercise data-number="25.4.1"}
+### Exercise 25.4.2 {.unnumbered .exercise data-number="25.4.2"}
+### Exercise 25.4.3 {.unnumbered .exercise data-number="25.4.3"}
+### Exercise 25.4.4 {.unnumbered .exercise data-number="25.4.4"}
+## Simplifying list-columns {#simplifying-list-columns .r4ds-section}
+### Exercise 25.5.1 {.unnumbered .exercise data-number="25.5.1"}
+### Exercise 25.5.2 {.unnumbered .exercise data-number="25.5.2"}
+## Making tidy data with broom {#making-tidy-data-with-broom .r4ds-section}
+
+<!--chapter:end:many-models.Rmd-->
+
+
+# Model basics {#model-basics .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-15 .r4ds-section}
+## A simple model {#a-simple-model .r4ds-section}
+### Exercise 23.2.1 {.unnumbered .exercise data-number="23.2.1"}
+### Exercise 23.2.2 {.unnumbered .exercise data-number="23.2.2"}
+### Exercise 23.2.3 {.unnumbered .exercise data-number="23.2.3"}
+## Visualising models {#visualising-models .r4ds-section}
+### Exercise 23.3.1 {.unnumbered .exercise data-number="23.3.1"}
+### Exercise 23.3.2 {.unnumbered .exercise data-number="23.3.2"}
+### Exercise 23.3.3 {.unnumbered .exercise data-number="23.3.3"}
+### Exercise 23.3.4 {.unnumbered .exercise data-number="23.3.4"}
+## Formulas and model families {#formulas-and-model-families .r4ds-section}
+### Exercise 23.4.1 {.unnumbered .exercise data-number="23.4.1"}
+### Exercise 23.4.2 {.unnumbered .exercise data-number="23.4.2"}
+### Exercise 23.4.3 {.unnumbered .exercise data-number="23.4.3"}
+### Exercise 23.4.4 {.unnumbered .exercise data-number="23.4.4"}
+## Missing values {#missing-values-5 .r4ds-section}
+## Other model families {#other-model-families .r4ds-section}
+
+<!--chapter:end:model-basics.Rmd-->
+
+
+# Model building {#model-building .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-16 .r4ds-section}
+## Why are low quality diamonds more expensive? {#diamond-prices .r4ds-section}
+### Exercise 24.2.1 {.unnumbered .exercise data-number="24.2.1"}
+### Exercise 24.2.2 {.unnumbered .exercise data-number="24.2.2"}
+### Exercise 24.2.3 {.unnumbered .exercise data-number="24.2.3"}
+### Exercise 24.2.4 {.unnumbered .exercise data-number="24.2.4"}
+## What affects the number of daily flights? {#what-affects-the-number-of-daily-flights .r4ds-section}
+### Exercise 24.3.1 {.unnumbered .exercise data-number="24.3.1"}
+### Exercise 24.3.2 {.unnumbered .exercise data-number="24.3.2"}
+### Exercise 24.3.3 {.unnumbered .exercise data-number="24.3.3"}
+### Exercise 24.3.4 {.unnumbered .exercise data-number="24.3.4"}
+### Exercise 24.3.5 {.unnumbered .exercise data-number="24.3.5"}
+### Exercise 24.3.6 {.unnumbered .exercise data-number="24.3.6"}
+### Exercise 24.3.7 {.unnumbered .exercise data-number="24.3.7"}
+### Exercise 24.3.8 {.unnumbered .exercise data-number="24.3.8"}
+## Learning more about models {#learning-more-about-models .r4ds-section}
+
+<!--chapter:end:model-building.Rmd-->
+
+# (PART) Model {-}
+
+# Introduction {#model-intro .r4ds-section}
+
+`r no_exercises()`
+
+<!--chapter:end:model.Rmd-->
+
+# Pipes {#pipes .r4ds-section}
+
+`r no_exercises()`
+
+<!--chapter:end:pipes.Rmd-->
+
+# (PART) Program {-}
+
+# Introduction {#program-intro .r4ds-section}
+
+`r no_exercises()`
+
+<!--chapter:end:program.Rmd-->
+
+
+# Relational data {#relational-data .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-7 .r4ds-section}
+## nycflights13 {#nycflights13-relational .r4ds-section}
+### Exercise 13.2.1 {.unnumbered .exercise data-number="13.2.1"}
+### Exercise 13.2.2 {.unnumbered .exercise data-number="13.2.2"}
+### Exercise 13.2.3 {.unnumbered .exercise data-number="13.2.3"}
+### Exercise 13.2.4 {.unnumbered .exercise data-number="13.2.4"}
+## Keys {#keys .r4ds-section}
+### Exercise 13.3.1 {.unnumbered .exercise data-number="13.3.1"}
+### Exercise 13.3.2 {.unnumbered .exercise data-number="13.3.2"}
+### Exercise 13.3.3 {.unnumbered .exercise data-number="13.3.3"}
+## Mutating joins {#mutating-joins .r4ds-section}
+### Exercise 13.4.1 {.unnumbered .exercise data-number="13.4.1"}
+### Exercise 13.4.2 {.unnumbered .exercise data-number="13.4.2"}
+### Exercise 13.4.3 {.unnumbered .exercise data-number="13.4.3"}
+### Exercise 13.4.4 {.unnumbered .exercise data-number="13.4.4"}
+### Exercise 13.4.5 {.unnumbered .exercise data-number="13.4.5"}
+## Filtering joins {#filtering-joins .r4ds-section}
+### Exercise 13.5.1 {.unnumbered .exercise data-number="13.5.1"}
+### Exercise 13.5.2 {.unnumbered .exercise data-number="13.5.2"}
+### Exercise 13.5.3 {.unnumbered .exercise data-number="13.5.3"}
+### Exercise 13.5.4 {.unnumbered .exercise data-number="13.5.4"}
+### Exercise 13.5.5 {.unnumbered .exercise data-number="13.5.5"}
+### Exercise 13.5.6 {.unnumbered .exercise data-number="13.5.6"}
+## Join problems {#join-problems .r4ds-section}
+## Set operations {#set-operations .r4ds-section}
+
+<!--chapter:end:relational-data.Rmd-->
+
+# R Markdown formats {#r-markdown-formats .r4ds-section}
+
+`r no_exercises()`
+
+<!--chapter:end:rmarkdown-formats.Rmd-->
+
+# R Markdown workflow {#r-markdown-workflow .r4ds-section}
+
+`r no_exercises()`
+
+<!--chapter:end:rmarkdown-workflow.Rmd-->
+
+
+# R Markdown {#r-markdown .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-18 .r4ds-section}
+## R Markdown basics {#r-markdown-basics .r4ds-section}
+### Exercise 27.2.1 {.unnumbered .exercise data-number="27.2.1"}
+### Exercise 27.2.2 {.unnumbered .exercise data-number="27.2.2"}
+### Exercise 27.2.3 {.unnumbered .exercise data-number="27.2.3"}
+### Exercise 27.2.4 {.unnumbered .exercise data-number="27.2.4"}
+## Text formatting with Markdown {#text-formatting-with-markdown .r4ds-section}
+### Exercise 27.3.1 {.unnumbered .exercise data-number="27.3.1"}
+### Exercise 27.3.2 {.unnumbered .exercise data-number="27.3.2"}
+### Exercise 27.3.3 {.unnumbered .exercise data-number="27.3.3"}
+## Code chunks {#code-chunks .r4ds-section}
+### Exercise 27.4.1 {.unnumbered .exercise data-number="27.4.1"}
+### Exercise 27.4.2 {.unnumbered .exercise data-number="27.4.2"}
+### Exercise 27.4.3 {.unnumbered .exercise data-number="27.4.3"}
+### Exercise 27.4.4 {.unnumbered .exercise data-number="27.4.4"}
+## Troubleshooting {#troubleshooting .r4ds-section}
+## YAML header {#yaml-header .r4ds-section}
+## Learning more {#learning-more-3 .r4ds-section}
+
+<!--chapter:end:rmarkdown.Rmd-->
+
+
+# Strings {#strings .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-8 .r4ds-section}
+## String basics {#string-basics .r4ds-section}
+### Exercise 14.2.1 {.unnumbered .exercise data-number="14.2.1"}
+### Exercise 14.2.2 {.unnumbered .exercise data-number="14.2.2"}
+### Exercise 14.2.3 {.unnumbered .exercise data-number="14.2.3"}
+### Exercise 14.2.4 {.unnumbered .exercise data-number="14.2.4"}
+### Exercise 14.2.5 {.unnumbered .exercise data-number="14.2.5"}
+### Exercise 14.2.6 {.unnumbered .exercise data-number="14.2.6"}
+## Matching patterns with regular expressions {#matching-patterns-with-regular-expressions .r4ds-section}
+### Basic matches {#basic-matches .r4ds-section}
+#### Exercise 14.3.1.1 {.unnumbered .exercise data-number="14.3.1.1"}
+#### Exercise 14.3.1.2 {.unnumbered .exercise data-number="14.3.1.2"}
+#### Exercise 14.3.1.3 {.unnumbered .exercise data-number="14.3.1.3"}
+### Anchors {#anchors .r4ds-section}
+#### Exercise 14.3.2.1 {.unnumbered .exercise data-number="14.3.2.1"}
+#### Exercise 14.3.2.2 {.unnumbered .exercise data-number="14.3.2.2"}
+### Character classes and alternatives {#character-classes-and-alternatives .r4ds-section}
+#### Exercise 14.3.3.1 {.unnumbered .exercise data-number="14.3.3.1"}
+#### Exercise 14.3.3.2 {.unnumbered .exercise data-number="14.3.3.2"}
+#### Exercise 14.3.3.3 {.unnumbered .exercise data-number="14.3.3.3"}
+#### Exercise 14.3.3.4 {.unnumbered .exercise data-number="14.3.3.4"}
+#### Exercise 14.3.3.5 {.unnumbered .exercise data-number="14.3.3.5"}
+### Repetition {#repetition .r4ds-section}
+#### Exercise 14.3.4.1 {.unnumbered .exercise data-number="14.3.4.1"}
+#### Exercise 14.3.4.2 {.unnumbered .exercise data-number="14.3.4.2"}
+#### Exercise 14.3.4.3 {.unnumbered .exercise data-number="14.3.4.3"}
+#### Exercise 14.3.4.4 {.unnumbered .exercise data-number="14.3.4.4"}
+### Grouping and backreferences {#grouping-and-backreferences .r4ds-section}
+#### Exercise 14.3.5.1 {.unnumbered .exercise data-number="14.3.5.1"}
+#### Exercise 14.3.5.2 {.unnumbered .exercise data-number="14.3.5.2"}
+## Tools {#tools .r4ds-section}
+### Detect matches {#detect-matches .r4ds-section}
+#### Exercise 14.4.1.1 {.unnumbered .exercise data-number="14.4.1.1"}
+#### Exercise 14.4.1.2 {.unnumbered .exercise data-number="14.4.1.2"}
+### Extract matches {#extract-matches .r4ds-section}
+#### Exercise 14.4.2.1 {.unnumbered .exercise data-number="14.4.2.1"}
+#### Exercise 14.4.2.2 {.unnumbered .exercise data-number="14.4.2.2"}
+### Grouped matches {#grouped-matches .r4ds-section}
+#### Exercise 14.4.3.1 {.unnumbered .exercise data-number="14.4.3.1"}
+#### Exercise 14.4.3.2 {.unnumbered .exercise data-number="14.4.3.2"}
+### Replacing matches {#replacing-matches .r4ds-section}
+#### Exercise 14.4.4.1 {.unnumbered .exercise data-number="14.4.4.1"}
+#### Exercise 14.4.4.2 {.unnumbered .exercise data-number="14.4.4.2"}
+#### Exercise 14.4.4.3 {.unnumbered .exercise data-number="14.4.4.3"}
+### Splitting {#splitting .r4ds-section}
+#### Exercise 14.4.5.1 {.unnumbered .exercise data-number="14.4.5.1"}
+#### Exercise 14.4.5.2 {.unnumbered .exercise data-number="14.4.5.2"}
+#### Exercise 14.4.5.3 {.unnumbered .exercise data-number="14.4.5.3"}
+### Find matches {#find-matches .r4ds-section}
+## Other types of pattern {#other-types-of-pattern .r4ds-section}
+### Exercise 14.5.1 {.unnumbered .exercise data-number="14.5.1"}
+### Exercise 14.5.2 {.unnumbered .exercise data-number="14.5.2"}
+## Other uses of regular expressions {#other-uses-of-regular-expressions .r4ds-section}
+## stringi {#stringi .r4ds-section}
+### Exercise 14.7.1 {.unnumbered .exercise data-number="14.7.1"}
+### Exercise 14.7.2 {.unnumbered .exercise data-number="14.7.2"}
+
+<!--chapter:end:strings.Rmd-->
+
+
+# Tibbles {#tibbles .r4ds-section}
+
+Placeholder
+
+
+## Exercise 10.1 {.unnumbered .exercise data-number="10.1"}
+## Exercise 10.2 {.unnumbered .exercise data-number="10.2"}
+## Exercise 10.3 {.unnumbered .exercise data-number="10.3"}
+## Exercise 10.4 {.unnumbered .exercise data-number="10.4"}
+## Exercise 10.5 {.unnumbered .exercise data-number="10.5"}
+## Exercise 10.6 {.unnumbered .exercise data-number="10.6"}
+
+<!--chapter:end:tibble.Rmd-->
+
+
+# Tidy data {#tidy-data .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-6 .r4ds-section}
+## Tidy data {#tidy-data-1 .r4ds-section}
+### Exercise 12.2.1 {.unnumbered .exercise data-number="12.2.1"}
+### Exercise 12.2.2 {.unnumbered .exercise data-number="12.2.2"}
+### Exercise 12.2.3 {.unnumbered .exercise data-number="12.2.3"}
+## Pivoting {#pivoting .r4ds-section}
+### Exercise 12.3.1 {.unnumbered .exercise data-number="12.3.1"}
+### Exercise 12.3.2 {.unnumbered .exercise data-number="12.3.2"}
+### Exercise 12.3.3 {.unnumbered .exercise data-number="12.3.3"}
+### Exercise 12.3.4 {.unnumbered .exercise data-number="12.3.4"}
+## Separating and uniting {#separating-and-uniting .r4ds-section}
+### Exercise 12.4.1 {.unnumbered .exercise data-number="12.4.1"}
+### Exercise 12.4.2 {.unnumbered .exercise data-number="12.4.2"}
+### Exercise 12.4.3 {.unnumbered .exercise data-number="12.4.3"}
+## Missing values {#missing-values-3 .r4ds-section}
+### Exercise 12.5.1 {.unnumbered .exercise data-number="12.5.1"}
+### Exercise 12.5.2 {.unnumbered .exercise data-number="12.5.2"}
+## Case Study {#case-study .r4ds-section}
+### Exercise 12.6.1 {.unnumbered .exercise data-number="12.6.1"}
+### Exercise 12.6.2 {.unnumbered .exercise data-number="12.6.2"}
+### Exercise 12.6.3 {.unnumbered .exercise data-number="12.6.3"}
+### Exercise 12.6.4 {.unnumbered .exercise data-number="12.6.4"}
+## Non-tidy data {#non-tidy-data .r4ds-section}
+
+<!--chapter:end:tidy.Rmd-->
+
+
+# Data transformation {#transform .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-2 .r4ds-section}
+## Filter rows with `filter()` {#filter-rows-with-filter .r4ds-section}
+### Exercise 5.2.1 {.unnumbered .exercise data-number="5.2.1"}
+### Exercise 5.2.2 {.unnumbered .exercise data-number="5.2.2"}
+### Exercise 5.2.3 {.unnumbered .exercise data-number="5.2.3"}
+### Exercise 5.2.4 {.unnumbered .exercise data-number="5.2.4"}
+## Arrange rows with `arrange()` {#arrange-rows-with-arrange .r4ds-section}
+### Exercise 5.3.1 {.unnumbered .exercise data-number="5.3.1"}
+### Exercise 5.3.2 {.unnumbered .exercise data-number="5.3.2"}
+### Exercise 5.3.3 {.unnumbered .exercise data-number="5.3.3"}
+### Exercise 5.3.4 {.unnumbered .exercise data-number="5.3.4"}
+## Select columns with `select()` {#select .r4ds-section}
+### Exercise 5.4.1 {.unnumbered .exercise data-number="5.4.1"}
+### Exercise 5.4.2 {.unnumbered .exercise data-number="5.4.2"}
+### Exercise 5.4.3 {.unnumbered .exercise data-number="5.4.3"}
+### Exercise 5.4.4 {.unnumbered .exercise data-number="5.4.4"}
+## Add new variables with `mutate()` {#add-new-variables-with-mutate .r4ds-section}
+### Exercise 5.5.1 {.unnumbered .exercise data-number="5.5.1"}
+### Exercise 5.5.2 {.unnumbered .exercise data-number="5.5.2"}
+### Exercise 5.5.3 {.unnumbered .exercise data-number="5.5.3"}
+### Exercise 5.5.4 {.unnumbered .exercise data-number="5.5.4"}
+### Exercise 5.5.5 {.unnumbered .exercise data-number="5.5.5"}
+### Exercise 5.5.6 {.unnumbered .exercise data-number="5.5.6"}
+## Grouped summaries with `summarise()` {#grouped-summaries-with-summarise .r4ds-section}
+### Exercise 5.6.1 {.unnumbered .exercise data-number="5.6.1"}
+### Exercise 5.6.2 {.unnumbered .exercise data-number="5.6.2"}
+### Exercise 5.6.3 {.unnumbered .exercise data-number="5.6.3"}
+### Exercise 5.6.4 {.unnumbered .exercise data-number="5.6.4"}
+### Exercise 5.6.5 {.unnumbered .exercise data-number="5.6.5"}
+### Exercise 5.6.6 {.unnumbered .exercise data-number="5.6.6"}
+## Grouped mutates (and filters) {#grouped-mutates-and-filters .r4ds-section}
+### Exercise 5.7.1 {.unnumbered .exercise data-number="5.7.1"}
+### Exercise 5.7.2 {.unnumbered .exercise data-number="5.7.2"}
+### Exercise 5.7.3 {.unnumbered .exercise data-number="5.7.3"}
+### Exercise 5.7.4 {.unnumbered .exercise data-number="5.7.4"}
+### Exercise 5.7.5 {.unnumbered .exercise data-number="5.7.5"}
+### Exercise 5.7.6 {.unnumbered .exercise data-number="5.7.6"}
+### Exercise 5.7.7 {.unnumbered .exercise data-number="5.7.7"}
+### Exercise 5.7.8 {.unnumbered .exercise data-number="5.7.8"}
+
+<!--chapter:end:transform.Rmd-->
+
+
+# Vectors {#vectors .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-13 .r4ds-section}
+## Vector basics {#vector-basics .r4ds-section}
+## Important types of atomic vector {#important-types-of-atomic-vector .r4ds-section}
+### Exercise 20.3.1 {.unnumbered .exercise data-number="20.3.1"}
+### Exercise 20.3.2 {.unnumbered .exercise data-number="20.3.2"}
+### Exercise 20.3.3 {.unnumbered .exercise data-number="20.3.3"}
+### Exercise 20.3.4 {.unnumbered .exercise data-number="20.3.4"}
+### Exercise 20.3.5 {.unnumbered .exercise data-number="20.3.5"}
+## Using atomic vectors {#using-atomic-vectors .r4ds-section}
+### Exercise 20.4.1 {.unnumbered .exercise data-number="20.4.1"}
+### Exercise 20.4.2 {.unnumbered .exercise data-number="20.4.2"}
+### Exercise 20.4.3 {.unnumbered .exercise data-number="20.4.3"}
+### Exercise 20.4.4 {.unnumbered .exercise data-number="20.4.4"}
+### Exercise 20.4.5 {.unnumbered .exercise data-number="20.4.5"}
+### Exercise 20.4.6 {.unnumbered .exercise data-number="20.4.6"}
+## Recursive vectors (lists) {#lists .r4ds-section}
+### Exercise 20.5.1 {.unnumbered .exercise data-number="20.5.1"}
+### Exercise 20.5.2 {.unnumbered .exercise data-number="20.5.2"}
+## Attributes {#attributes .r4ds-section}
+## Augmented vectors {#augmented-vectors .r4ds-section}
+### Exercise 20.7.1 {.unnumbered .exercise data-number="20.7.1"}
+### Exercise 20.7.2 {.unnumbered .exercise data-number="20.7.2"}
+### Exercise 20.7.3 {.unnumbered .exercise data-number="20.7.3"}
+
+<!--chapter:end:vectors.Rmd-->
+
+
+# Data visualisation {#data-visualisation .r4ds-section}
+
+Placeholder
+
+
+## Introduction {#introduction-1 .r4ds-section}
+## First steps {#first-steps .r4ds-section}
+### Exercise 3.2.1{.unnumbered .exercise data-number="3.2.1"}
+### Exercise 3.2.2 {.unnumbered .exercise data-number="3.2.2"}
+### Exercise  3.2.3 {.unnumbered .exercise data-number="3.2.3"}
+### Exercise  3.2.4 {.unnumbered .exercise data-number="3.2.4"}
+### Exercise  3.2.5 {.unnumbered .exercise data-number="3.2.5"}
+## Aesthetic mappings {#aesthetic-mappings .r4ds-section}
+### Exercise 3.3.1 {.unnumbered .exercise data-number="3.3.1"}
+### Exercise 3.3.2 {.unnumbered .exercise data-number="3.3.2"}
+### Exercise 3.3.3 {.unnumbered .exercise data-number="3.3.3"}
+### Exercise 3.3.4 {.unnumbered .exercise data-number="3.3.4"}
+### Exercise 3.3.5 {.unnumbered .exercise data-number="3.3.5"}
+### Exercise  3.3.6 {.unnumbered .exercise data-number="3.3.6"}
+## Common problems {#common-problems .r4ds-section}
+## Facets
+### Exercise 3.5.1 {.unnumbered .exercise data-number="3.5.1"}
+### Exercise 3.5.2 {.unnumbered .exercise data-number="3.5.2"}
+### Exercise 3.5.3 {.unnumbered .exercise data-number="3.5.3"}
+### Exercise 3.5.4 {.unnumbered .exercise data-number="3.5.4"}
+### Exercise 3.5.5 {.unnumbered .exercise data-number="3.5.5"}
+### Exercise 3.5.6 {.unnumbered .exercise data-number="3.5.6"}
+## Geometric objects {#geometric-objects .r4ds-section}
+### Exercise 3.6.1 {.unnumbered .exercise data-number="3.6.1"}
+### Exercise 3.6.2 {.unnumbered .exercise data-number="3.6.2"}
+### Exercise 3.6.3 {.unnumbered .exercise data-number="3.6.3"}
+### Exercise 3.6.4 {.unnumbered .exercise data-number="3.6.4"}
+### Exercise 3.6.5 {.unnumbered .exercise data-number="3.6.5"}
+### Exercise 3.6.6 {.unnumbered .exercise data-number="3.6.6"}
+## Statistical transformations {#statistical-transformations .r4ds-section}
+### Exercise 3.7.1 {.unnumbered .exercise data-number="3.7.1"}
+### Exercise 3.7.2 {.unnumbered .exercise data-number="3.7.2"}
+### Exercise 3.7.3 {.unnumbered .exercise data-number="3.7.3"}
+### Exercise  3.7.4 {.unnumbered .exercise data-number="3.7.4"}
+### Exercise  3.7.5 {.unnumbered .exercise data-number="3.7.5"}
+## Position adjustments {#position-adjustments .r4ds-section}
+### Exercise  3.8.1 {.unnumbered .exercise data-number="3.8.1"}
+### Exercise  3.8.2 {.unnumbered .exercise data-number="3.8.2"}
+### Exercise  3.8.3 {.unnumbered .exercise data-number="3.8.3"}
+### Exercise  3.8.4 {.unnumbered .exercise data-number="3.8.4"}
+## Coordinate systems {#coordinate-systems .r4ds-section}
+### Exercise 3.9.1 {.unnumbered .exercise data-number="3.9.1"}
+### Exercise 3.9.2 {.unnumbered .exercise data-number="3.9.2"}
+### Exercise 3.9.3 {.unnumbered .exercise data-number="3.9.3"}
+### Exercise 3.9.4 {.unnumbered .exercise data-number="3.9.4"}
+## The layered grammar of graphics {#the-layered-grammar-of-graphics .r4ds-section}
+
+<!--chapter:end:visualize.Rmd-->
+
+
+# Workflow: basics {#workflow-basics .r4ds-section}
+
+Placeholder
+
+
+## Exercise 4.1 {.unnumbered .exercise data-number="4.1"}
+## Exercise 4.2 {.unnumbered .exercise data-number="4.2"}
+## Exercise 4.3 {.unnumbered .exercise data-number="4.3"}
+
+<!--chapter:end:workflow-basics.Rmd-->
+
+# Workflow: projects {#workflow-projects .r4ds-section}
+
+`r no_exercises()`
+
+<!--chapter:end:workflow-projects.Rmd-->
+
+
+# Workflow: scripts {#workflow-scripts .r4ds-section}
+
+Placeholder
+
+
+## Exercise 6.1 {.unnumbered .exercise data-number="6.1"}
+## Exercise 6.2 {.unnumbered .exercise data-number="6.2"}
+
+<!--chapter:end:workflow-scripts.Rmd-->
+
+# (PART) Wrangle {-}
+
+# Introduction {#wrangle-intro .r4ds-section}
+
+`r no_exercises()`
+
+<!--chapter:end:wrangle.Rmd-->
+

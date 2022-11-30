@@ -6,8 +6,8 @@
 # Miscelaneous
 
 # This example shows all 25 symbols that you can use to produce points in your graphs:
-  # Make an empty chart
-  plot(1, 1, xlim=c(1,5.5), ylim=c(0,7), type="n", ann=FALSE)
+# Make an empty chart
+plot(1, 1, xlim=c(1,5.5), ylim=c(0,7), type="n", ann=FALSE)
 
 # Plot digits 0-4 with increasing size and color
 text(1:5, rep(6,5), labels=c(0:4), cex=1:5, col=1:5)
